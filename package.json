@@ -1,0 +1,21 @@
+{
+  "name": "fav_lyrics",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:ishitatsu820/favlyrics.git",
+  "author": "ishikawa tatsuro <ishitatsu820@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build-css": "node-sass --include-path scss scss/app.scss css/style.css",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\""
+  },
+  "dependencies": {
+    "bootstrap": "^4.1.3",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.5"
+  },
+  "devDependencies": {
+    "node-sass": "^4.9.4",
+    "nodemon": "^1.18.4"
+  }
+}
