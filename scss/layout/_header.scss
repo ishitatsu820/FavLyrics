@@ -1,0 +1,41 @@
+@import "../var";
+
+.header {
+  background: $color_baseB;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  width: 100%;
+  left: 0;
+  top: 0;
+  position: fixed;
+  z-index: 2;
+
+  &-logo {
+    font-family: $font-family_corp;
+    color: $color_mainR;
+    font-size: $font-size_3l;
+    padding-left: $space_xl;
+  }
+
+  .nav {
+    &-menu {
+      display: flex;
+      flex-direction: row;
+    }
+    &-item {
+      padding: $space_l;
+      a {
+        color: $color_accent;
+        font-size: $font-size_l;
+        font-family: $font-family_corp;
+      }
+
+      a:hover {
+        opacity: .5;
+      }
+    }
+  }
+
+}

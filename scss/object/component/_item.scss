@@ -1,0 +1,32 @@
+@import "../../var";
+
+.c-item {
+  width: 45%;
+  background-color: $color_mainO;
+  border-radius: 3px;
+  margin-bottom: $space_3l;
+  transition: .3s;
+  &-title {
+    font-size: $font-size_xl;
+    padding: $space_l;
+    font-weight: bold;
+  }
+  &-subtitle {
+    font-size: $font-size_default;
+    text-align: right;
+    padding: $space_l;
+
+    .artist {
+      font-style: italic;
+    }
+  }
+  &-text {
+    font-size: $font-size_default;
+    padding: $space_l;
+  }
+  
+}
+.c-item:hover {
+  transform: scale(1.1);
+  transition: .3s;
+}

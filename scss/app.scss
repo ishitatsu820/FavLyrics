@@ -1,0 +1,41 @@
+// =====================================
+// Foundation
+// =====================================
+
+@import "foundation/_reset";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,900;1,500&display=swap');
+// @import "../node_modules/bootstrap/scss/bootstrap";
+@import "foundation/_base";
+
+
+// =====================================
+// Layout
+// =====================================
+@import "layout/header";
+@import "layout/main";
+@import "layout/fotter";
+
+
+
+// =====================================
+// Object
+// =====================================
+// -------------------------------
+// Component
+// -------------------------------
+@import "object/component/item";
+
+// -------------------------------
+// Project
+// -------------------------------
+@import "object/project/hero";
+@import "object/project/about";
+@import "object/project/posts";
+
+
+
+
+// -------------------------------
+// Utility
+// -------------------------------
+// 

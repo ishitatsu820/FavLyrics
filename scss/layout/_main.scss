@@ -1,0 +1,30 @@
+@import "../var";
+
+.container-fluid {
+
+  width: 100%;
+  background-color: $color_baseB;
+}
+
+.container {
+  width: 70%;
+  margin: 0 auto;
+  background-color: $color_baseG;
+}
+
+.section {
+
+  &-title {
+    text-align: center;
+    font-size: $font-size_xxl;
+    color: $color_mainR;
+    padding-top: $space_4l;
+    padding-bottom: $space_4l;
+  }
+
+  &-contents {
+    width: 50%;
+    margin: 0 auto;
+    padding-bottom: $space_4l;
+  }
+}
