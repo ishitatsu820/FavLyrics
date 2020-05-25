@@ -23,3 +23,10 @@ a {
 a:hover {
   transition: .3s;
 }
+
+.drawingArea {
+  display: flex;
+  flex-flow: row wrap;
+  background: #adfaff;
+  width: 100%;
+}

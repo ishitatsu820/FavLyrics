@@ -68,6 +68,12 @@ a {
 a:hover {
   transition: .3s; }
 
+.drawingArea {
+  display: flex;
+  flex-flow: row wrap;
+  background: #adfaff;
+  width: 100%; }
+
 .header {
   background: #2e2e2e;
   display: flex;
@@ -76,9 +82,7 @@ a:hover {
   height: 80px;
   width: 100%;
   left: 0;
-  top: 0;
-  position: fixed;
-  z-index: 2; }
+  top: 0; }
   .header-logo {
     font-family: "Roboto", sans-serif;
     color: #ff5722;
@@ -95,6 +99,10 @@ a:hover {
       font-family: "Roboto", sans-serif; }
     .header .nav-item a:hover {
       opacity: .5; }
+
+.search {
+  background-color: #527462;
+  width: 10%; }
 
 .container-fluid {
   width: 100%;
@@ -116,6 +124,10 @@ a:hover {
   width: 50%;
   margin: 0 auto;
   padding-bottom: 100px; }
+
+.sidebar {
+  background-color: #128919;
+  width: 10%; }
 
 .footer {
   background-color: #626262;
