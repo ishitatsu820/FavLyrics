@@ -1,0 +1,24 @@
+@import "../../var";
+
+
+.hero {
+  background-image: url(../img/hero.jpg);
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 800px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &-title {
+    font-size: 60px;
+    color: #fff;
+    font-family: $font-family_corp;
+    text-shadow: 0 0 20px rgba(2c, 2d, 34, .4), 0 0 50px rgba(0, 0, 0, .8);
+  }
+
+
+}
