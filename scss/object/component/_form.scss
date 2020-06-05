@@ -1,0 +1,30 @@
+@import "../../var";
+
+.c-form {
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  &-label {
+    display: block;
+    font-size: $font-size_l;
+    margin-bottom: $space_l;
+  }
+  &-item {
+    font-size: $font-size_l;
+    
+  }
+  input[type="text"], input[type="password"] {
+    display: block; 
+    height: 60px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  input[type="submit"] {
+    height: 60px;
+    box-sizing: border-box;
+    margin: $space_l 0;
+  }
+
+}
