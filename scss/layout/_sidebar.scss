@@ -1,6 +1,22 @@
 @import "../var";
 
 .sidebar {
-  background-color: #128919;
-  width: 10%;
+  // background-color: #128919;
+  width: 15%;
+  margin-left: $space_3l;
+  &-item {
+    border: solid;
+    border-color: $color_baseB;
+    border-radius: 3px;
+    font-size: $font-size_l;
+    text-align: center;
+    line-height: 50px;
+    margin-bottom: $space_xl;
+    a {
+      display: block;
+    }
+  }
+  &-item:first-child {
+    margin-top: $space_4l;
+  }
 }

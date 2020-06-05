@@ -1,33 +1,50 @@
 @import "../var";
 
 
-
+.main {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  width: 100%;
+}
 
 .container-fluid {
 
   width: 100%;
   background-color: $color_baseB;
 }
-
 .container {
-  width: 70%;
+  width: 50%;
   margin: 0 auto;
-  background-color: $color_baseG;
+  background-color: $color_baseB;
 }
+
+
+
+.center {
+  width: 50%;
+}
+
 
 .section {
 
   &-title {
     text-align: center;
-    font-size: $font-size_xxl;
+    font-size: $font-size_3l;
+    font-weight: bold;
     color: $color_mainR;
     padding-top: $space_4l;
     padding-bottom: $space_4l;
   }
 
   &-contents {
-    width: 50%;
-    margin: 0 auto;
+    width: 100%;
     padding-bottom: $space_4l;
   }
+}
+
+
+
+.bg-colorB {
+  background-color: $color_baseB;
 }
