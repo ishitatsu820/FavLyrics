@@ -15,7 +15,7 @@
     font-size: $font-size_l;
     
   }
-  input[type="text"], input[type="password"] {
+  input[type="text"], input[type="password"],input[type="number"] {
     display: block; 
     height: 60px;
     width: 100%;
@@ -26,6 +26,11 @@
     box-sizing: border-box;
     margin: $space_l 0;
   }
-  
+  textarea {
+    display: block; 
+    height: 100px;
+    width: 100%;
+    box-sizing: border-box;
+  }
 
 }
