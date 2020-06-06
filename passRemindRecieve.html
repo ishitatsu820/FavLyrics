@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="css/style.css">
-  <title>パスワードリマインド | Fav Lyrics</title>
+  <title>パスワード変更 | Fav Lyrics</title>
 </head>
 <body>
   <!-- ヘッダー -->
@@ -25,18 +25,25 @@
 
   <!-- メインコンテンツ -->
   <section class="container">
-      <div class="section-title"><h2>パスワードリマインド</h2></div>
+      <div class="section-title"><h2>パスワード変更</h2></div>
   
       <div class="section-contents">
         <form action="" method="POST" class="c-form">
           <label class="c-form-label">
-            Email
-            <input type="text" name="email" value="" class="c-form-item">
+            新しいPassword
+            <input type="password" name="password" value="" class="c-form-item">
           </label>
           <div class="msg-area">
-            
+                      
           </div>
-          <input type="submit" value="送信" class="">
+          <label class="c-form-label">
+            新しいPassword（再入力） 
+            <input type="password" name="password" value="" class="c-form-item">
+          </label>
+          <div class="msg-area">
+                      
+          </div>
+          <input type="submit" value="変更する" class="">
         </form>
 
       </div>
