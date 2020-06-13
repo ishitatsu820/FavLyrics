@@ -16,18 +16,19 @@
 .container {
   width: 50%;
   margin: 0 auto;
-  background-color: $color_baseB;
 }
 
 
 
 .center {
-  width: 50%;
+  width: 70%;
 }
 
 
 .section {
 
+  width: 70%;
+  margin: 0 auto;
   &-title {
     text-align: center;
     font-size: $font-size_3l;

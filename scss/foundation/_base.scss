@@ -27,3 +27,10 @@ a:hover {
 a:visited {
   color: $font-color_default;
 }
+
+input {
+  border-bottom:1px solid $color_baseG;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+}
