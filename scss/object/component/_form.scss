@@ -1,8 +1,9 @@
 @import "../../var";
 
 .c-form {
-  width: 50%;
+  width: 70%;
   margin: 0 auto;
+  padding-bottom: $space_3l;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -17,18 +18,20 @@
   }
   input[type="text"], input[type="password"],input[type="number"] {
     display: block; 
-    height: 60px;
+    height: 50px;
     width: 100%;
     box-sizing: border-box;
   }
   input[type="submit"] {
     height: 60px;
+    width: 200px;
+    border: 1px solid $color_baseG;
+    border-radius: 3px;
     box-sizing: border-box;
-    margin: $space_l 0;
+    margin-left: auto;
   }
   textarea {
     display: block; 
-    height: 100px;
     width: 100%;
     box-sizing: border-box;
   }

@@ -1,0 +1,32 @@
+@import "../../var";
+
+
+.p-comment {
+  width: 70%;
+  margin: 0 auto;
+  &-label {
+    font-size: $font-size_xl;
+    input[type="text"] {
+      height: 25px;
+      width: 80%;
+      margin-right: auto;
+    }
+    input[type="submit"] {
+      width: 50px;
+      border: 1px solid $color_baseG;
+      border-radius: 3px;
+      
+      
+    }
+
+     
+  }
+
+  &-list {
+    margin-top: $space_xl;
+    .comment-user {
+      margin-right: $space_xl;
+      font-style: italic
+    }
+  }
+}
