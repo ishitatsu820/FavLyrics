@@ -86,10 +86,10 @@ debug('処理終わり <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
       <form action="" method="POST" class="c-form">
         <label class="c-form-label">
           Email
-          <input type="text" name="email" value="" class="c-form-item">
+          <input type="text" name="email" value="<?php if(!empty($_POST['email'])) echo $_POST['email']; ?>" class="c-form-item">
         </label>
         <div class="msg-area">
-          
+          <?php if(!enpty($err_msg['email'])) echo $err_msg['email'] ; ?>
         </div>
         <label class="c-form-label">
           Password
@@ -109,10 +109,7 @@ debug('処理終わり <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
       </form>
     </div>
   </section>
-  <!-- フッター -->
-  <footer class="footer">
-    © 2020 ISHITATSU.
-  </footer>
 
-</body>
-</html>
+<?php
+  require('footer.php');  
+?>
