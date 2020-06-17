@@ -54,7 +54,7 @@ function debugLogStart(){
 //エラーメッセージを定数に設定
 define('MSG01','入力必須です');
 define('MSG02', 'Emailの形式で入力してください');
-define('MSG03','パスワード（再入力）が合っていません');
+define('MSG03','Password（再入力）が合っていません');
 define('MSG04','半角英数字のみご利用いただけます');
 define('MSG05','6文字以上で入力してください');
 define('MSG06','256文字以内で入力してください');
@@ -234,7 +234,9 @@ function dbConnect(){
   );
   // PDOオブジェクト生成（DBへ接続）
   $dbh = new PDO($dsn, $user, $password, $options);
+  debug('DB接続完了。');
   return $dbh;
+  
 }
 
 function queryPost($dbh, $sql, $data){

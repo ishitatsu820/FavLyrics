@@ -12,21 +12,30 @@
     font-size: $font-size_l;
     margin-bottom: $space_l;
   }
+  .msg-area {
+    color: red;
+    float: right;
+    font-size: $font-size_default;
+    vertical-align: baseline;
+  }
+  .err input{
+    background: #f7dcd9;
+  }
   &-item {
     font-size: $font-size_l;
-    
   }
   input[type="text"], input[type="password"],input[type="number"] {
     display: block; 
     height: 50px;
     width: 100%;
     box-sizing: border-box;
+    border-radius: 5px 5px 0 0;
   }
   input[type="submit"] {
     height: 60px;
     width: 200px;
     border: 1px solid $color_baseG;
-    border-radius: 3px;
+    border-radius: 5px;
     box-sizing: border-box;
     margin-left: auto;
   }
@@ -35,5 +44,15 @@
     width: 100%;
     box-sizing: border-box;
   }
-
+  .pass-policy {
+    margin-left: $space_m;
+    h3 {
+      font-size: $font-size_l;
+      margin-bottom: $space_s;
+    }
+    ul {
+      list-style: circle;
+      padding-left: $space_xl;
+    }
+  }
 }
