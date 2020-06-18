@@ -2,9 +2,9 @@
 //共通変数・関数ファイルを読込み
 require('functions.php');
 
-debug('「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「');
-debug('「　ユーザー登録ページ　');
-debug('「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「');
+debug('「「「「「「「「「「「「「「「「「「「「「「「');
+debug('===ユーザー登録ページ===');
+debug('「「「「「「「「「「「「「「「「「「「「「「「');
 debugLogStart();
 
 if(!empty($_POST)){
@@ -54,7 +54,7 @@ if(!empty($_POST)){
 
             debug('セッション変数の中身：'.print_r($_SESSION, true));
 
-            header("Location:mypage.html");
+            header("Location:mypage.php");
           }
         } catch (Exception $e) {
           error_log('エラー発生：'. $e->getMessage());
@@ -67,7 +67,7 @@ if(!empty($_POST)){
 
 }
 
-debug('処理終わり <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
+debug('処理終わり <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
 ?>
 
 
@@ -107,7 +107,7 @@ debug('処理終わり <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
         </label>
 
         <div class="pass-policy">
-          <h3>パスワードポリシー</h3>
+          <h3><パスワードポリシー></h3>
           <ul>
             <li>6文字以上256文字以内</li>
             <li>半角英数字のみ</li>
