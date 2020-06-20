@@ -101,6 +101,7 @@ function validEmail($str, $key){
 }
 //バリデーション関数（Email重複チェック）
 function validEmailDup($email){
+  debug('Email重複がないか検索します。');
   global $err_msg;
   //例外処理
   try {
@@ -219,6 +220,7 @@ function isLogin(){
 //================================
 //DB接続関数
 function dbConnect(){
+  debug('DBへの接続準備を開始します。');
   //DBへの接続準備
   $dsn = 'mysql:dbname=FavLyrics;host=localhost;charset=utf8';
   $user = 'root';

@@ -9,13 +9,13 @@
         <?php
           if(empty($_SESSION['user_id'])){            
         ?>
-        <li class="nav-item"><a href="">ログイン</a></li>
-        <li class="nav-item" ><a href="">ユーザー登録</a></li>
+        <li class="nav-item"><a href="login.php">ログイン</a></li>
+        <li class="nav-item" ><a href="signup.php">ユーザー登録</a></li>
         <?php
           }else{
         ?>
-        <li class="nav-item"><a href="">ログイン</a></li>
-        <li class="nav-item" ><a href="">ユーザー登録</a></li>
+        <li class="nav-item"><a href="mypage.php">マイページ</a></li>
+        <li class="nav-item" ><a href="logout.php">ログアウト</a></li>
         <?php
           }
         ?>
