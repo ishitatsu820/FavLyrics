@@ -94,12 +94,12 @@ debug('処理終わり <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
 
     <div class="section-contents">
       <form action="" method="POST" class="c-form">
-        <label class="c-form-label">
+        <label class="c-form-label <?php if(!empty($err_msg['email'])) echo 'err'; ?>">
           Email<span class="msg-area"><?php if(!empty($err_msg['email'])) echo $err_msg['email'] ; ?> </span>
           <input type="text" name="email" value="<?php if(!empty($_POST['email'])) echo $_POST['email']; ?>" class="c-form-item">
         </label>
 
-        <label class="c-form-label">
+        <label class="c-form-label <?php if(!empty($err_msg['email'])) echo 'err'; ?>">
           Password<span class="msg-area"><?php if(!empty($err_msg['password'])) echo $err_msg['password'] ; ?> </span>
           <input type="password" name="password" value="" class="c-form-item">
         </label>
@@ -111,7 +111,7 @@ debug('処理終わり <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
         <input type="submit" value="ログイン" class="">
       </form>
       <div class="text-center">
-        Passwordを忘れた方は<a href="">こちら</a>
+        Passwordを忘れた方は<a href="passRemindSend.php">こちら</a>
       </div>
     </div>
   </section>

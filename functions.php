@@ -549,25 +549,25 @@ function queryPost($dbh, $sql, $data){
 //   }
 // }
 
-// //================================
-// // メール送信
-// //================================
-// function sendMail($from, $to, $subject, $comment){
-//     if(!empty($to) && !empty($subject) && !empty($comment)){
-//         //文字化けしないように設定（お決まりパターン）
-//         mb_language("Japanese"); //現在使っている言語を設定する
-//         mb_internal_encoding("UTF-8"); //内部の日本語をどうエンコーディング（機械が分かる言葉へ変換）するかを設定
+//================================
+// メール送信
+//================================
+function sendMail($from, $to, $subject, $comment){
+    if(!empty($to) && !empty($subject) && !empty($comment)){
+        //文字化けしないように設定（お決まりパターン）
+        mb_language("Japanese"); //現在使っている言語を設定する
+        mb_internal_encoding("UTF-8"); //内部の日本語をどうエンコーディング（機械が分かる言葉へ変換）するかを設定
         
-//         //メールを送信（送信結果はtrueかfalseで返ってくる）
-//         $result = mb_send_mail($to, $subject, $comment, "From: ".$from);
-//         //送信結果を判定
-//         if ($result) {
-//           debug('メールを送信しました。');
-//         } else {
-//           debug('【エラー発生】メールの送信に失敗しました。');
-//         }
-//     }
-// }
+        //メールを送信（送信結果はtrueかfalseで返ってくる）
+        $result = mb_send_mail($to, $subject, $comment, "From: ".$from);
+        //送信結果を判定
+        if ($result) {
+          debug('メールを送信しました。');
+        } else {
+          debug('【エラー発生】メールの送信に失敗しました。');
+        }
+    }
+}
 
 // //================================
 // // その他
@@ -616,16 +616,16 @@ function queryPost($dbh, $sql, $data){
 //     $_SESSION[$key] = '';
 //     return $data;
 //   }
-// }
-// //認証キー生成
-// function makeRandKey($length = 8) {
-//     static $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJLKMNOPQRSTUVWXYZ0123456789';
-//     $str = '';
-//     for ($i = 0; $i < $length; ++$i) {
-//         $str .= $chars[mt_rand(0, 61)];
-//     }
-//     return $str;
-// }
+// 
+//認証キー生成
+function makeRandKey($length = 8) {
+    static $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJLKMNOPQRSTUVWXYZ0123456789';
+    $str = '';
+    for ($i = 0; $i < $length; ++$i) {
+        $str .= $chars[mt_rand(0, 61)];
+    }
+    return $str;
+}
 // // 画像処理
 // function uploadImg($file, $key){
 //   debug('画像アップロード処理開始');
