@@ -104,7 +104,7 @@ debug('処理終わり <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
       <div class="section-contents">
         <form action="" method="POST" class="c-form">
           <label class="c-form-label <?php if(!empty($err_msg['email'])) echo 'err'; ?>">
-            Email<?php if(!empty($err_msg['email'])) echo $err_msg['email'] ; ?> </span>
+            Email<span><?php if(!empty($err_msg['email'])) echo $err_msg['email'] ; ?> </span>
             <input type="text" name="email" value="" class="c-form-item">
           </label>
           <input type="submit" value="送信" class="">
@@ -114,9 +114,6 @@ debug('処理終わり <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
     </section>
 
   <!-- フッター -->
-  <footer class="footer">
-    © 2020 ISHITATSU.
-  </footer>
-
-</body>
-</html>
+  <?php
+    require('footer.php');
+  ?>
