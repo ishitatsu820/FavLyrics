@@ -63,7 +63,8 @@ p, a {
 
 a {
   text-decoration: none;
-  transition: .3s; }
+  transition: .3s;
+  display: block; }
 
 a:hover {
   transition: .3s; }
@@ -91,6 +92,8 @@ input {
     color: #ff5722;
     font-size: 38px;
     padding-left: 20px; }
+    .header-logo a:visited {
+      color: #ff5722; }
   .header .nav-menu {
     display: flex;
     flex-direction: row; }
@@ -156,7 +159,7 @@ input {
   .sidebar-item:first-child {
     margin-top: 100px; }
 
-.footer {
+#footer {
   background-color: #626262;
   padding: 20px;
   text-align: center;

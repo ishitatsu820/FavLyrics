@@ -1,26 +1,24 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="css/style.css">
-  <title>パスワード変更 | Fav Lyrics</title>
-</head>
+<?php
+//共通変数・関数ファイルを読込み
+require('functions.php');
+
+debug('「「「「「「「「「「「「「「「「「「「「「「「');
+debug('===パスワード変更===');
+debug('「「「「「「「「「「「「「「「「「「「「「「「');
+debugLogStart();
+
+
+debug('処理終わり <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
+?>
+<?php
+  $pageTitle = 'パスワード変更';
+ require('head.php');
+?>
 <body>
   <!-- ヘッダー -->
-  <header class="header">
-    <div class="header-logo">
-      <h1>Fav Lyrics</h1>
-    </div>
-
-    <div class="nav">
-      <ul class="nav-menu">
-        <li class="nav-item"><a href="">ログイン</a></li>
-        <li class="nav-item" ><a href="">ユーザー登録</a></li>
-      </ul>
-    </div>
-  </header>
+  <?php
+    require('header.php'); 
+  ?>
 
 
   <!-- メインコンテンツ -->
@@ -50,9 +48,6 @@
     </section>
 
   <!-- フッター -->
-  <footer class="footer">
-    © 2020 ISHITATSU.
-  </footer>
-
-</body>
-</html>
+  <?php
+    require('footer.php');
+  ?>

@@ -1,4 +1,3 @@
-  <!-- ヘッダー -->
   <header class="header">
     <div class="header-logo">
       <h1><a href="index.php">Fav Lyrics</a></h1>
