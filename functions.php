@@ -258,30 +258,31 @@ function queryPost($dbh, $sql, $data){
 
 
 
-// function getUser($u_id){
-//   debug('ユーザー情報を取得します。');
-//   //例外処理
-//   try {
-//     // DBへ接続
-//     $dbh = dbConnect();
-//     // SQL文作成
-//     $sql = 'SELECT * FROM users  WHERE id = :u_id AND delete_flg = 0';
-//     $data = array(':u_id' => $u_id);
-//     // クエリ実行
-//     $stmt = queryPost($dbh, $sql, $data);
+function getUser($u_id){
+  debug('ユーザー情報を取得します。');
+  //例外処理
+  try {
+    // DBへ接続
+    $dbh = dbConnect();
+    // SQL文作成
+    $sql = 'SELECT * FROM users  WHERE id = :u_id AND delete_flg = 0';
+    $data = array(':u_id' => $u_id);
+    // クエリ実行
+    $stmt = queryPost($dbh, $sql, $data);
 
-//     // クエリ結果のデータを１レコード返却
-//     if($stmt){
-//       return $stmt->fetch(PDO::FETCH_ASSOC);
-//     }else{
-//       return false;
-//     }
+    // クエリ結果のデータを１レコード返却
+    if($stmt){
+      return $stmt->fetch(PDO::FETCH_ASSOC);
+    }else{
+      return false;
+    }
     
-//   } catch (Exception $e) {
-//     error_log('エラー発生:' . $e->getMessage());
-//   }
-// //  return $stmt->fetch(PDO::FETCH_ASSOC);
-// }
+  } catch (Exception $e) {
+    error_log('エラー発生:' . $e->getMessage());
+  }
+ return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
 // function getProduct($u_id, $p_id){
 //   debug('商品情報を取得します。');
 //   debug('ユーザーID：'.$u_id);
@@ -572,43 +573,43 @@ function sendMail($from, $to, $subject, $comment){
 // //================================
 // // その他
 // //================================
-// // サニタイズ
-// function sanitize($str){
-//   return htmlspecialchars($str,ENT_QUOTES);
-// }
-// // フォーム入力保持
-// function getFormData($str, $flg = false){
-//   if($flg){
-//     $method = $_GET;
-//   }else{
-//     $method = $_POST;
-//   }
-//   global $dbFormData;
-//   // ユーザーデータがある場合
-//   if(!empty($dbFormData)){
-//     //フォームのエラーがある場合
-//     if(!empty($err_msg[$str])){
-//       //POSTにデータがある場合
-//       if(isset($method[$str])){
-//         return sanitize($method[$str]);
-//       }else{
-//         //ない場合（基本ありえない）はDBの情報を表示
-//         return sanitize($dbFormData[$str]);
-//       }
-//     }else{
-//       //POSTにデータがあり、DBの情報と違う場合
-//       if(isset($method[$str]) && $method[$str] !== $dbFormData[$str]){
-//         return sanitize($method[$str]);
-//       }else{
-//         return sanitize($dbFormData[$str]);
-//       }
-//     }
-//   }else{
-//     if(isset($method[$str])){
-//       return sanitize($method[$str]);
-//     }
-//   }
-// }
+// サニタイズ
+function sanitize($str){
+  return htmlspecialchars($str,ENT_QUOTES);
+}
+// フォーム入力保持
+function getFormData($str, $flg = false){
+  if($flg){
+    $method = $_GET;
+  }else{
+    $method = $_POST;
+  }
+  global $dbFormData;
+  // ユーザーデータがある場合
+  if(!empty($dbFormData)){
+    //フォームのエラーがある場合
+    if(!empty($err_msg[$str])){
+      //POSTにデータがある場合
+      if(isset($method[$str])){
+        return sanitize($method[$str]);
+      }else{
+        //ない場合（基本ありえない）はDBの情報を表示
+        return sanitize($dbFormData[$str]);
+      }
+    }else{
+      //POSTにデータがあり、DBの情報と違う場合
+      if(isset($method[$str]) && $method[$str] !== $dbFormData[$str]){
+        return sanitize($method[$str]);
+      }else{
+        return sanitize($dbFormData[$str]);
+      }
+    }
+  }else{
+    if(isset($method[$str])){
+      return sanitize($method[$str]);
+    }
+  }
+}
 // //sessionを１回だけ取得できる
 // function getSessionFlash($key){
 //   if(!empty($_SESSION[$key])){

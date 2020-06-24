@@ -44,7 +44,7 @@ if(!empty($_POST)){
           $stmt = queryPost($dbh, $sql, $data);
 
           if($stmt){
-            debug('クエリ成功');
+            debug('パスワード変更完了。');
 
             session_unset();
             $_SESSION['msg_success'] = SUC03;
