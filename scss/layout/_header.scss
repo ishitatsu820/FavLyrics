@@ -16,6 +16,9 @@
     color: $color_mainR;
     font-size: $font-size_3l;
     padding-left: $space_xl;
+    a:visited {
+      color: $color_mainR;
+    }
   }
 
   .nav {
