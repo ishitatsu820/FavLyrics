@@ -8,6 +8,21 @@ debug('「「「「「「「「「「「「「「「「「「「「「「「');
 debugLogStart();
 
 
+$currentPageNum = (!empty($_GET['p'])) ? $_GET['p'] : 1;
+if(!is_int((int)$currentPageNum)){
+  error_log('エラー発生：指定ページに不正な値が入りました。');
+  header("Location.index.php");
+}
+
+// 表示件数
+$listSpan = 10;
+// 現在の表示レコードの先頭を算出
+$currentMinNum = (($currentPageNum-1)*$listSpan);
+// DBから投稿データを取得
+$dbPostData = getPostList($currentMinNum);
+debug('現在のページ：'.$currentPageNum);
+
+
 debug('処理終わり <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
 ?>
 <?php
@@ -48,42 +63,23 @@ debug('処理終わり <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
     
     <div class="section-contents p-posts">
       
-      
-      <div class="c-item">
+      <?php
+        foreach ($dbPostData['data'] as $key => $val):
+      ?>
+      <a class="c-item">
         <div class="c-item-title">
-          <h3>走りたくなる曲</h3>
+          <h3><?php echo sanitize($val['title']); ?></h3>
         </div>
         <div class="c-item-subtitle">
-          <h4>PRAYING RUN <br> by <span class="artist">UVERworld</span></h4>
+          <h4><?php echo sanitize($val['music_title']); ?><br> by <span class="artist"><?php echo sanitize($val['artist']); ?></span></h4>
         </div>
         <div class="c-item-text">
-          <p>走って、走って、走る。ただひたすらに...</p>
+          <p><?php echo sanitize(mb_substr($val['lyrics'], 0, 29)); ?>...</p>
         </div>
-      </div>
-      
-      <div class="c-item">
-        <div class="c-item-title">
-          <h3>幸せとは</h3>
-        </div>
-        <div class="c-item-subtitle">
-          <h4>御影意志 <br> by <span class="artist">UVERworld</span></h4>
-        </div>
-        <div class="c-item-text">
-          <p>気づかない幸せが、そこにある。</p>
-        </div>
-      </div>
-      
-      <div class="c-item">
-        <div class="c-item-title">
-          <h3>始まりの合唱</h3>
-        </div>
-        <div class="c-item-subtitle">
-          <h4>0 choir <br> by <span class="artist">UVERworld</span></h4>
-        </div>
-        <div class="c-item-text">
-          <p>おっおっおっおっおっおっおっおっ ゼーロクワイヤ！</p>
-        </div>
-      </div>
+      </a>
+      <?php
+        endforeach;
+      ?>
       
     </div>
   </section>
