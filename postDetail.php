@@ -1,26 +1,27 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="css/style.css">
-  <title>投稿詳細 | Fav Lyrics</title>
-</head>
+<?php
+//共通変数・関数ファイルを読込み
+require('functions.php');
+
+debug('「「「「「「「「「「「「「「「「「「「「「「「');
+debug('===投稿詳細ページ===');
+debug('「「「「「「「「「「「「「「「「「「「「「「「');
+debugLogStart();
+
+require('auth.php');
+
+
+
+debug('処理終わり <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
+?>
+<?php
+  $pageTitle = '投稿詳細';
+  require('head.php');
+?>
 <body>
   <!-- ヘッダー -->
-  <header class="header">
-    <div class="header-logo">
-      <h1>Fav Lyrics</h1>
-    </div>
-
-    <div class="nav">
-      <ul class="nav-menu">
-        <li class="nav-item"><a href="">マイページ</a></li>
-        <li class="nav-item" ><a href="">ログアウト</a></li>
-      </ul>
-    </div>
-  </header>
+  <?php
+    require('header.php');
+  ?>
 
   <!-- メイン -->
   <div class="main">
@@ -86,7 +87,6 @@
                 <li><span class="comment-user">あああ</span>てててててててええええええええええええええええええええええええええ</li>
                 <li><span class="comment-user">H</span>僕も好きです。</li>
                 <li><span class="comment-user">名無し</span>いいねえ</li>
-                
               </ul>
             </div>
           </div>
@@ -98,27 +98,12 @@
     
     
     <!-- サイドバー -->
-    <div class="sidebar">
-      <div class="sidebar-item">
-        <a href="">新規投稿</a> 
-      </div>
-      <div class="sidebar-item">
-        <a href="">プロフィール編集</a>
-      </div>
-      <div class="sidebar-item">
-        <a href="">パスワード変更</a>
-      </div>
-      <div class="sidebar-item">
-        <a href="">退会</a>
-      </div>
-    </div>
-  </div>
+    <?php
+      require('sidebar.php');
+    ?>
     
     
   <!-- フッター -->
-  <footer class="footer">
-      © 2020 ISHITATSU.
-  </footer>
-
-</body>
-</html>
+  <?php
+    require('footer.php');
+  ?>

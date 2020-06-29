@@ -66,7 +66,7 @@ debug('処理終わり <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
       <?php
         foreach ($dbPostData['data'] as $key => $val):
       ?>
-      <a class="c-item">
+      <a href="" class="c-item">
         <div class="c-item-title">
           <h3><?php echo sanitize($val['title']); ?></h3>
         </div>
