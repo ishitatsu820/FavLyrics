@@ -80,8 +80,8 @@ debug('処理終わり <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
         <?php
           endforeach;
         ?>
-          
         </div>
+        <?php pagination($currentPageNum_post, $dbMyPostData['total_page']); ?>
       </section>
 
 

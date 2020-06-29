@@ -236,6 +236,36 @@ input {
       list-style: circle;
       padding-left: 20px; }
 
+.pagination {
+  position: relative;
+  overflow: hidden; }
+  .pagination-list {
+    position: relative;
+    left: 50%;
+    float: left;
+    padding-left: 0;
+    list-style: none; }
+    .pagination-list .list-item {
+      position: relative;
+      left: -50%;
+      float: left;
+      margin-right: 5px; }
+    .pagination-list .list-item:last-child {
+      margin-right: 0; }
+    .pagination-list .list-item a {
+      display: block;
+      padding: 5px 10px;
+      background: #ff9800;
+      color: #626262;
+      text-decoration: none;
+      font-family: "Roboto", sans-serif, sans-serif; }
+    .pagination-list .list-item.active a {
+      background: #626262;
+      color: #ff9800; }
+    .pagination-list .list-item a:hover {
+      background: #626262;
+      color: #ff9800; }
+
 .hero {
   background-image: url(../img/hero.jpg);
   background-attachment: fixed;

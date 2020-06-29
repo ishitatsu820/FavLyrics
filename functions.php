@@ -688,7 +688,7 @@ function makeRandKey($length = 8) {
 //     }
 //   }
 // }
-//ページング
+// ページング
 // $currentPageNum : 現在のページ数
 // $totalPageNum : 総ページ数
 // $link : 検索用GETパラメータリンク
