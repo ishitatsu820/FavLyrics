@@ -238,7 +238,8 @@ input {
 
 .pagination {
   position: relative;
-  overflow: hidden; }
+  overflow: hidden;
+  margin-top: -100px; }
   .pagination-list {
     position: relative;
     left: 50%;

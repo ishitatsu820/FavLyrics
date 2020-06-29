@@ -6,6 +6,7 @@
 .pagination {
   position: relative;
   overflow: hidden;
+  margin-top: -($space_4l);
   &-list {
     position: relative;
     left: 50%;
