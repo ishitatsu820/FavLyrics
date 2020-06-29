@@ -123,7 +123,7 @@ debug('処理終わり <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
     <!-- メインコンテンツ -->
     <div class="center">
       <section class="section">
-        <div class="section-title"><h2><?php (!$edit_flg)? '新規投稿': '投稿編集'; ?></h2></div>
+        <div class="section-title"><h2><?php echo (!$edit_flg) ? '新規投稿':'投稿編集'; ?></h2></div>
         
         <div class="section-contents">
           <form action="" method="POST" class="c-form">

@@ -11,7 +11,7 @@ debugLogStart();
 $currentPageNum = (!empty($_GET['p'])) ? $_GET['p'] : 1;
 if(!is_int((int)$currentPageNum)){
   error_log('エラー発生：指定ページに不正な値が入りました。');
-  header("Location.index.php");
+  header("Location:index.php");
 }
 
 // 表示件数
