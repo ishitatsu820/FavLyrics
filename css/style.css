@@ -64,7 +64,8 @@ p, a {
 a {
   text-decoration: none;
   transition: .3s;
-  display: block; }
+  display: block;
+  color: #333; }
 
 a:hover {
   transition: .3s; }

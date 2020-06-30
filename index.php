@@ -66,7 +66,7 @@ debug('処理終わり <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
       <?php
         foreach ($dbPostData['data'] as $key => $val):
       ?>
-      <a href="" class="c-item">
+      <a href="postDetail.php?p_id=<?php echo $val['id'].'&p='.$currentPageNum_post; ?>" class="c-item">
         <div class="c-item-title">
           <h3><?php echo sanitize($val['title']); ?></h3>
         </div>

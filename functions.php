@@ -73,7 +73,7 @@ define('SUC01', 'パスワードを変更しました');
 define('SUC02', 'プロフィールを変更しました');
 define('SUC03', 'メールを送信しました');
 define('SUC04', '登録しました');
-define('SUC05', '購入しました！相手と連絡を取りましょう！');
+define('SUC05', 'お気に入りに登録しました！');
 
 //================================
 // グローバル変数
@@ -257,7 +257,7 @@ function queryPost($dbh, $sql, $data){
 
 
 
-
+//ユーザー情報を取得する
 function getUser($u_id){
   debug('ユーザー情報を取得します。');
   //例外処理
@@ -283,10 +283,12 @@ function getUser($u_id){
  return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
+
+
 function getPost($u_id, $p_id){
-  debug('商品情報を取得します。');
+  debug('投稿情報を取得します。');
   debug('ユーザーID：'.$u_id);
-  debug('商品ID：'.$p_id);
+  debug('投稿ID：'.$p_id);
   //例外処理
   try {
     // DBへ接続
@@ -310,8 +312,9 @@ function getPost($u_id, $p_id){
 }
 
 
+//投稿リストを取得する
 function getPostList($currentMinNum = 1, $span = 10){
-  debug('商品情報を取得します。');
+  debug('投稿情報を取得します。');
   //例外処理
   try {
     // DBへ接続
@@ -370,36 +373,36 @@ function getPostList($currentMinNum = 1, $span = 10){
   }
 }
 
+//一つのPOSTを取得する
+function getPostOne($p_id){
+  debug('情報を取得します。');
+  debug('商品ID：'.$p_id);
+  //例外処理
+  try {
+    // DBへ接続
+    $dbh = dbConnect();
+    // SQL文作成
+    $sql = 'SELECT p.id , p.name , p.comment, p.price, p.pic1, p.pic2, p.pic3, p.user_id, p.create_date, p.update_date, c.name AS category 
+             FROM product AS p LEFT JOIN category AS c ON p.category_id = c.id WHERE p.id = :p_id AND p.delete_flg = 0 AND c.delete_flg = 0';
+    $data = array(':p_id' => $p_id);
+    // クエリ実行
+    $stmt = queryPost($dbh, $sql, $data);
 
-// function getProductOne($p_id){
-//   debug('商品情報を取得します。');
-//   debug('商品ID：'.$p_id);
-//   //例外処理
-//   try {
-//     // DBへ接続
-//     $dbh = dbConnect();
-//     // SQL文作成
-//     $sql = 'SELECT p.id , p.name , p.comment, p.price, p.pic1, p.pic2, p.pic3, p.user_id, p.create_date, p.update_date, c.name AS category 
-//              FROM product AS p LEFT JOIN category AS c ON p.category_id = c.id WHERE p.id = :p_id AND p.delete_flg = 0 AND c.delete_flg = 0';
-//     $data = array(':p_id' => $p_id);
-//     // クエリ実行
-//     $stmt = queryPost($dbh, $sql, $data);
+    if($stmt){
+      // クエリ結果のデータを１レコード返却
+      return $stmt->fetch(PDO::FETCH_ASSOC);
+    }else{
+      return false;
+    }
 
-//     if($stmt){
-//       // クエリ結果のデータを１レコード返却
-//       return $stmt->fetch(PDO::FETCH_ASSOC);
-//     }else{
-//       return false;
-//     }
-
-//   } catch (Exception $e) {
-//     error_log('エラー発生:' . $e->getMessage());
-//   }
-// }
+  } catch (Exception $e) {
+    error_log('エラー発生:' . $e->getMessage());
+  }
+}
 
 
 function getMyProducts($u_id){
-  debug('自分の商品情報を取得します。');
+  debug('自分の投稿情報を取得します。');
   debug('ユーザーID：'.$u_id);
   //例外処理
   try {
