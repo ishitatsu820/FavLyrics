@@ -20,7 +20,6 @@ $p_id = (!empty($_GET['p_id'])) ? $_GET['p_id'] : '' ;
 if(!empty($_POST)){
   debug('POST送信があります。');
 
-  //ログイン認証
   require('auth.php');
 
   try {

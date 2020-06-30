@@ -8,8 +8,8 @@ debug('「「「「「「「「「「「「「「「「「「「「「「「');
 debugLogStart();
 
 
-$currentPageNum = (!empty($_GET['p'])) ? $_GET['p'] : 1;
-if(!is_int((int)$currentPageNum)){
+$currentPageNum_top = (!empty($_GET['p'])) ? $_GET['p'] : 1;
+if(!is_int((int)$currentPageNum_top)){
   error_log('エラー発生：指定ページに不正な値が入りました。');
   header("Location:index.php");
 }
@@ -17,10 +17,10 @@ if(!is_int((int)$currentPageNum)){
 // 表示件数
 $listSpan = 10;
 // 現在の表示レコードの先頭を算出
-$currentMinNum = (($currentPageNum-1)*$listSpan);
+$currentMinNum_top = (($currentPageNum_top-1)*$listSpan);
 // DBから投稿データを取得
-$dbPostData = getPostList($currentMinNum);
-debug('現在のページ：'.$currentPageNum);
+$dbPostData = getPostList($currentMinNum_top);
+debug('現在のページ：'.$currentPageNum_top);
 
 
 debug('処理終わり <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
@@ -66,7 +66,7 @@ debug('処理終わり <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
       <?php
         foreach ($dbPostData['data'] as $key => $val):
       ?>
-      <a href="postDetail.php?p_id=<?php echo $val['id'].'&p='.$currentPageNum_post; ?>" class="c-item">
+      <a href="postDetail.php?p_id=<?php echo $val['id'].'&p='.$currentPageNum_top; ?>" class="c-item">
         <div class="c-item-title">
           <h3><?php echo sanitize($val['title']); ?></h3>
         </div>
