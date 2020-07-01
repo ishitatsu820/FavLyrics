@@ -9,7 +9,8 @@ debugLogStart();
 
 
 $p_id = (!empty($_GET['p_id'])) ? $_GET['p_id'] : '' ;
-// $viewData = '';
+
+// $viewData = getPostOne($_GET['p_id']);
 
 // if(empty($viewData)){
 //   error_log('エラー発生:指定ページに不正な値が入りました');
@@ -67,33 +68,19 @@ debug('処理終わり <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
         
         
         <div class="section-contents">
-          <form action="" method="post" class="c-form">
-            <label class="c-form-label">
-              タイトル
-            <input type="text" name="username" value="<?php echo sanitize($viewData['post_title']); ?>" class="c-form-item">
-            </label>
+          <div class="p-view">
+            <div class="p-view-title"><h3>夢を叶える</h3></div><span class="p-view-username"><a href="">あさん。</a></span>
+            <div class="p-view-lyrics">
+            本気の瞬間に  口にも出せないような夢は力なく消えてった
+            </div>
+            <div class="p-view-music_property"><span class="artist">UVERworld</span> − No.1</div>
 
-            <label class="c-form-label">
-              
-              <textarea name="" id="" cols="20" rows="15" class="c-form-item" placeholder="お気に入りのフレーズは？"></textarea>
-            </label>
-
-            <label class="c-form-label">
-              曲名
-              <input type="text" name="anthem" value="" class="c-form-item">
-            </label>
-
-            <label class="c-form-label">
-              アーティスト
-              <input type="text" name="anthem" value="" class="c-form-item" disabled>
-            </label>
-
-            
-            <input type="submit" value="お気に入りに登録する" class="">
-            
+          </div>
+          <form action="" method="post" class="float_right c-form">
+            <input type="submit" value="お気に入りに登録する" class="">            
           </form>
 
-          <div class="p-comment">
+          <div class="p-comment overflow_hidden">
             <form action="" method="post" class="">
               <label class="p-comment-label">
                 コメント

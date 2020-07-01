@@ -377,14 +377,13 @@ function getPostList($currentMinNum = 1, $span = 10){
 //一つのPOSTを取得する
 function getPostOne($p_id){
   debug('情報を取得します。');
-  debug('商品ID：'.$p_id);
+  debug('投稿ID：'.$p_id);
   //例外処理
   try {
     // DBへ接続
     $dbh = dbConnect();
     // SQL文作成
-    $sql = 'SELECT p.id , p.name , p.comment, p.price, p.pic1, p.pic2, p.pic3, p.user_id, p.create_date, p.update_date, c.name AS category 
-             FROM product AS p LEFT JOIN category AS c ON p.category_id = c.id WHERE p.id = :p_id AND p.delete_flg = 0 AND c.delete_flg = 0';
+    $sql = 'SELECT p.id , p.title , p.lyrics, p.artist, p.music_title, p.user_id, p.pic3, p.user_id FROM ';
     $data = array(':p_id' => $p_id);
     // クエリ実行
     $stmt = queryPost($dbh, $sql, $data);

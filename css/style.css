@@ -294,7 +294,7 @@ input {
   justify-content: space-between; }
 
 .p-comment {
-  width: 70%;
+  width: 100%;
   margin: 0 auto; }
   .p-comment-label {
     font-size: 24px; }
@@ -312,5 +312,31 @@ input {
       margin-right: 20px;
       font-style: italic; }
 
+.p-view {
+  display: flex;
+  flex-direction: column; }
+  .p-view-title {
+    font-size: 24px;
+    display: inline-block; }
+  .p-view-username {
+    font-size: 18px;
+    align-self: flex-end; }
+  .p-view-lyrics {
+    margin-top: 20px;
+    height: 300px; }
+  .p-view-music_property {
+    display: inline-block;
+    font-size: 18px;
+    align-self: flex-end;
+    margin-bottom: 50px; }
+  .p-view .artist {
+    font-style: italic; }
+
 .text-center {
   text-align: center; }
+
+.overflow_hidden {
+  overflow: hidden; }
+
+.float_right {
+  float: right; }
