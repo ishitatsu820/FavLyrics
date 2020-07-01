@@ -323,7 +323,7 @@ input {
     align-self: flex-end; }
   .p-view-lyrics {
     margin-top: 20px;
-    height: 300px; }
+    height: auto; }
   .p-view-music_property {
     display: inline-block;
     font-size: 18px;
