@@ -383,7 +383,7 @@ function getPostOne($p_id){
     // DBへ接続
     $dbh = dbConnect();
     // SQL文作成
-    $sql = 'SELECT p.id , p.title , p.lyrics, p.artist, p.music_title, p.user_id, p.pic3, p.user_id FROM ';
+    $sql = 'SELECT p.id , p.title , p.lyrics, p.artist, p.music_title, p.user_id, u.username AS username FROM post AS p LEFT JOIN users AS u ON p.user_id = u.id WHERE p.id = :p_id AND p.delete_flg = 0 AND u.delete_flg = 0';
     $data = array(':p_id' => $p_id);
     // クエリ実行
     $stmt = queryPost($dbh, $sql, $data);
@@ -584,6 +584,8 @@ function sendMail($from, $to, $subject, $comment){
 // //================================
 // // その他
 // //================================
+//lyrics改行処理
+
 // サニタイズ
 function sanitize($str){
   return htmlspecialchars($str,ENT_QUOTES);

@@ -317,7 +317,8 @@ input {
   flex-direction: column; }
   .p-view-title {
     font-size: 24px;
-    display: inline-block; }
+    display: inline-block;
+    font-weight: bold; }
   .p-view-username {
     font-size: 18px;
     align-self: flex-end; }

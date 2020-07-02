@@ -10,13 +10,14 @@ debugLogStart();
 
 $p_id = (!empty($_GET['p_id'])) ? $_GET['p_id'] : '' ;
 
-// $viewData = getPostOne($_GET['p_id']);
+$viewData = getPostOne($_GET['p_id']);
 
 // if(empty($viewData)){
 //   error_log('エラー発生:指定ページに不正な値が入りました');
 //   header("Location:index.php"); 
 // }
-// debug('取得したDBデータ：'.print_r($viewData,true));
+debug('取得レコードの中身：'.print_r($viewData, true));
+  
 
 if(!empty($_POST)){
   debug('POST送信があります。');
