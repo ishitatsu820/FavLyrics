@@ -1,2 +1,5 @@
+/README.md
 /node_modules
 /php.log
+/package.json
+/yarn.lock
