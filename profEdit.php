@@ -5,7 +5,7 @@ require('functions.php');
 debug('「「「「「「「「「「「「「「「「「「「「「「「');
 debug('===プロフィール編集===');
 debug('「「「「「「「「「「「「「「「「「「「「「「「');
-debugLogStart();
+startDebugLog();
 
 require('auth.php');
 

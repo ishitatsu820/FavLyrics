@@ -5,7 +5,7 @@ require('functions.php');
 debug('「「「「「「「「「「「「「「「「「「「「「「「');
 debug('===マイページ===');
 debug('「「「「「「「「「「「「「「「「「「「「「「「');
-debugLogStart();
+startDebugLog();
 
 //ログイン認証
 require('auth.php');
@@ -13,7 +13,7 @@ require('auth.php');
 $currentPageNum_post = (!empty($_GET['p'])) ? $_GET['p'] : 1;
 if(!is_int((int)$currentPageNum_post)){
   error_log('エラー発生：指定ページ（登録一覧）に不正な値が入りました。');
-  header("Location:mypage.php");
+  // header("Location:mypage.php");
 }
 
 // $currentPageNum_fav = (!empty($_GET['p'])) ? $_GET['p'] : 1;

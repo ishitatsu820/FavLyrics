@@ -5,7 +5,7 @@ require('functions.php');
 debug('「「「「「「「「「「「「「「「「「「「「「「「');
 debug('===TOPページ===');
 debug('「「「「「「「「「「「「「「「「「「「「「「「');
-debugLogStart();
+startDebugLog();
 
 
 $currentPageNum_top = (!empty($_GET['p'])) ? $_GET['p'] : 1;
@@ -66,7 +66,7 @@ debug('処理終わり <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
       <?php
         foreach ($dbPostData['data'] as $key => $val):
       ?>
-      <a href="postDetail.php?p_id=<?php echo $val['id'].'&p='.$currentPageNum_top; ?>" class="c-item">
+      <a href="postDetail.php?p_id=<?php echo $val['p_id'].'&u_id='.$val['u_id'].'&prev=index'.'&p='.$currentPageNum_top; ?>" class="c-item">
         <div class="c-item-title">
           <h3><?php echo sanitize($val['title']); ?></h3>
         </div>

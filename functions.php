@@ -38,7 +38,7 @@ session_regenerate_id();
 //================================
 // 画面表示処理開始ログ吐き出し関数
 //================================
-function debugLogStart(){
+function startDebugLog(){
   debug('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 画面表示処理開始');
   debug('セッションID：'.session_id());
   debug('セッション変数の中身：'.print_r($_SESSION,true));
@@ -343,7 +343,7 @@ function getPostList($currentMinNum = 1, $span = 10){
     }
     
     // ページング用のSQL文作成
-    $sql = 'SELECT * FROM post';
+    $sql = 'SELECT p.id AS p_id, p.title , p.lyrics, p.artist, p.music_title, p.user_id, u.id AS u_id FROM post AS p LEFT JOIN users AS u ON p.user_id = u.id WHERE p.delete_flg = 0 AND u.delete_flg = 0';
     // if(!empty($category)) $sql .= ' WHERE category_id = '.$category;
     // if(!empty($sort)){
     //   switch($sort){

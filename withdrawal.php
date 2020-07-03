@@ -5,7 +5,7 @@ require('functions.php');
 debug('「「「「「「「「「「「「「「「「「「「「「「「');
 debug('===退会===');
 debug('「「「「「「「「「「「「「「「「「「「「「「「');
-debugLogStart();
+startDebugLog();
 
 require('auth.php');
 

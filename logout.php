@@ -5,7 +5,7 @@ require('functions.php');
 debug('「「「「「「「「「「「「「「「「「「「「「「「');
 debug('===ログアウトページ===');
 debug('「「「「「「「「「「「「「「「「「「「「「「「');
-debugLogStart();
+startDebugLog();
 
 debug('ログアウトします。');
 // セッションを削除（ログアウトする）

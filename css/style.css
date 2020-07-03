@@ -331,7 +331,8 @@ input {
     align-self: flex-end;
     margin-bottom: 50px; }
   .p-view .artist {
-    font-style: italic; }
+    font-style: italic;
+    display: block; }
 
 .text-center {
   text-align: center; }
