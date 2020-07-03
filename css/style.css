@@ -64,7 +64,8 @@ p, a {
 a {
   text-decoration: none;
   transition: .3s;
-  display: block; }
+  display: block;
+  color: #333; }
 
 a:hover {
   transition: .3s; }
@@ -225,7 +226,8 @@ input {
   .c-form textarea {
     display: block;
     width: 100%;
-    box-sizing: border-box; }
+    box-sizing: border-box;
+    font-style: italic; }
   .c-form .pass-policy {
     margin-left: 10px; }
     .c-form .pass-policy h3 {
@@ -234,6 +236,37 @@ input {
     .c-form .pass-policy ul {
       list-style: circle;
       padding-left: 20px; }
+
+.pagination {
+  position: relative;
+  overflow: hidden;
+  margin-top: -100px; }
+  .pagination-list {
+    position: relative;
+    left: 50%;
+    float: left;
+    padding-left: 0;
+    list-style: none; }
+    .pagination-list .list-item {
+      position: relative;
+      left: -50%;
+      float: left;
+      margin-right: 5px; }
+    .pagination-list .list-item:last-child {
+      margin-right: 0; }
+    .pagination-list .list-item a {
+      display: block;
+      padding: 5px 10px;
+      background: #ff9800;
+      color: #626262;
+      text-decoration: none;
+      font-family: "Roboto", sans-serif, sans-serif; }
+    .pagination-list .list-item.active a {
+      background: #626262;
+      color: #ff9800; }
+    .pagination-list .list-item a:hover {
+      background: #626262;
+      color: #ff9800; }
 
 .hero {
   background-image: url(../img/hero.jpg);
@@ -261,7 +294,7 @@ input {
   justify-content: space-between; }
 
 .p-comment {
-  width: 70%;
+  width: 100%;
   margin: 0 auto; }
   .p-comment-label {
     font-size: 24px; }
@@ -279,5 +312,33 @@ input {
       margin-right: 20px;
       font-style: italic; }
 
+.p-view {
+  display: flex;
+  flex-direction: column; }
+  .p-view-title {
+    font-size: 24px;
+    display: inline-block;
+    font-weight: bold; }
+  .p-view-username {
+    font-size: 18px;
+    align-self: flex-end; }
+  .p-view-lyrics {
+    margin-top: 20px;
+    height: auto; }
+  .p-view-music_property {
+    display: inline-block;
+    font-size: 18px;
+    align-self: flex-end;
+    margin-bottom: 50px; }
+  .p-view .artist {
+    font-style: italic;
+    display: block; }
+
 .text-center {
   text-align: center; }
+
+.overflow_hidden {
+  overflow: hidden; }
+
+.float_right {
+  float: right; }

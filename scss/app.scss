@@ -27,7 +27,7 @@
 // -------------------------------
 @import "object/component/item";
 @import "object/component/form";
-
+@import "object/component/pagination";
 // -------------------------------
 // Project
 // -------------------------------
@@ -35,8 +35,7 @@
 @import "object/project/about";
 @import "object/project/posts";
 @import "object/project/comment";
-
-
+@import "object/project/view";
 
 // -------------------------------
 // Utility

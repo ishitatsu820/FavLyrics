@@ -1,0 +1,31 @@
+@import "../../var";
+
+
+.p-view {
+  display: flex;
+  flex-direction: column;
+
+  &-title {
+    font-size: $font-size_xl;
+    display: inline-block;
+    font-weight: bold;
+  }
+  &-username {
+    font-size: $font-size_l;
+    align-self: flex-end;
+  }
+  &-lyrics {
+    margin-top: $space_xl;
+    height: auto;
+  }
+  &-music_property {
+    display: inline-block;
+    font-size: $font-size_l;
+    align-self: flex-end;
+    margin-bottom: $space_3l;
+  }
+  .artist {
+    font-style: italic;
+    display: block;
+  }
+}

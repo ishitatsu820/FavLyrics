@@ -1,0 +1,52 @@
+@import "../../var";
+
+
+
+
+.pagination {
+  position: relative;
+  overflow: hidden;
+  margin-top: -($space_4l);
+  &-list {
+    position: relative;
+    left: 50%;
+    float: left;
+    padding-left: 0;
+    list-style: none;
+
+    .list-item {
+      position: relative;
+      left: -50%;
+      float: left;
+      margin-right: 5px;
+    }
+    .list-item:last-child {
+      margin-right: 0;
+    }
+    .list-item a {
+      display: block;
+      padding: 5px 10px;
+      background: $color_mainO;
+      color: $color_baseG;
+      text-decoration: none;
+      font-family: $font-family_corp, sans-serif;
+    }
+    .list-item.active a {
+      background: $color_baseG;
+      color: $color_mainO;
+    }
+    .list-item a:hover {
+      background: $color_baseG;
+      color: $color_mainO;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+

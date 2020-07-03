@@ -2,7 +2,7 @@
 //================================
 // ログイン認証・自動ログアウト
 //================================
-debug('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ログイン認証開始');
+
 // ログインしている場合
 if( !empty($_SESSION['login_date']) ){
   debug('ログイン済みユーザーです。');
@@ -33,9 +33,8 @@ if( !empty($_SESSION['login_date']) ){
 }else{
   debug('未ログインユーザーです。');
   if(basename($_SERVER['PHP_SELF']) !== 'login.php'){
+    $_SESSION['msg_error'] = ERR01;
      header("Location:login.php"); //ログインページへ
   }
 }
-
-debug('ログイン認証終わり <<<<<<<<<<<<<<<<<<<<<<<<<<<<');
 ?>
