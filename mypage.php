@@ -28,7 +28,7 @@ $listSpan = 10;
 // 現在の表示レコードの先頭を算出
 $currentMinNum_post = (($currentPageNum_post-1)*$listSpan);
 // DBから投稿データを取得
-$dbMyPostData = getPostList($currentMinNum_post);
+$dbMyPostData = getMyPost($currentMinNum_post, $listSpan, $_SESSION['user_id']);
 debug('現在のページ：'.$currentPageNum_post);
 
 // // 現在の表示レコードの先頭を算出
@@ -59,7 +59,7 @@ debug('処理終わり <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
     <!-- メインコンテンツ -->
     <div class="center">
       <section class="section">
-        <div class="section-title"><h2>登録一覧</h2></div>
+        <div class="section-title"><h2>投稿一覧</h2></div>
         
         
         <div class="section-contents p-posts">
@@ -81,7 +81,7 @@ debug('処理終わり <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
           endforeach;
         ?>
         </div>
-        <?php pagination($currentPageNum_post, $dbMyPostData['total_page']); ?>
+        <?php pagination($currentPageNum_post, $dbMyPostData['my_total_page']); ?>
       </section>
 
 

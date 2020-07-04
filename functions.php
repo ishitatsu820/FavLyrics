@@ -313,7 +313,7 @@ function getPost($u_id, $p_id){
 }
 
 
-//投稿リストを取得する
+//TOPページのリストを取得する
 function getPostList($currentMinNum = 1, $span = 10){
   debug('投稿情報を取得します。');
   //例外処理
@@ -401,26 +401,36 @@ function getPostOne($p_id){
 }
 
 
-function getMyProducts($u_id){
+function getMyPost($currentMinNum_post = 1, $span = 10, $u_id){
   debug('自分の投稿情報を取得します。');
   debug('ユーザーID：'.$u_id);
   //例外処理
   try {
-    // DBへ接続
+    //自分の投稿数をカウント
     $dbh = dbConnect();
-    // SQL文作成
-    $sql = 'SELECT * FROM product WHERE user_id = :u_id AND delete_flg = 0';
-    $data = array(':u_id' => $u_id);
+    $sql = 'SELECT id FROM post WHERE user_id = :u_id AND delete_flg = 0';
+    $data = array(':u_id' => $_SESSION['user_id']);
+    $stmt = queryPost($dbh, $sql, $data);
+    $rst['my_total'] = $stmt->rowCount(); //総レコード数
+    $rst['my_total_page'] = ceil($rst['my_total']/$span); //総ページ数
+    if(!$stmt){
+      return false;
+    }
+
+    //自分の投稿のリスト表示
+    $sql = 'SELECT title, lyrics, artist, music_title FROM post WHERE user_id = :u_id AND delete_flg = 0 ORDER BY create_date DESC';
+    $sql .= ' LIMIT '.$span.' OFFSET '.$currentMinNum_post;
+    debug('SQL：'.$sql);
     // クエリ実行
     $stmt = queryPost($dbh, $sql, $data);
 
     if($stmt){
-      // クエリ結果のデータを全レコード返却
-      return $stmt->fetchAll();
+      // クエリ結果のデータを全レコードを格納
+      $rst['data'] = $stmt->fetchAll();
+      return $rst;
     }else{
       return false;
     }
-
   } catch (Exception $e) {
     error_log('エラー発生:' . $e->getMessage());
   }
