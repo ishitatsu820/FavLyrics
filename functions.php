@@ -295,7 +295,7 @@ function getPost($u_id, $p_id){
     // DBへ接続
     $dbh = dbConnect();
     // SQL文作成
-    $sql = 'SELECT * FROM product WHERE user_id = :u_id AND id = :p_id AND delete_flg = 0';
+    $sql = 'SELECT title, lyrics, artist, music_title, fav, user_id FROM post WHERE user_id = :u_id AND id = :p_id AND delete_flg = 0';
     $data = array(':u_id' => $u_id, ':p_id' => $p_id);
     // クエリ実行
     $stmt = queryPost($dbh, $sql, $data);
