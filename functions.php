@@ -752,15 +752,19 @@ function pagination( $currentPageNum, $totalPageNum, $link = '', $pageColNum = 5
 // }
 // //GETパラメータ付与
 // // $del_key : 付与から取り除きたいGETパラメータのキー
-// function appendGetParam($arr_del_key = array()){
-//   if(!empty($_GET)){
-//     $str = '?';
-//     foreach($_GET as $key => $val){
-//       if(!in_array($key,$arr_del_key,true)){ //取り除きたいパラメータじゃない場合にurlにくっつけるパラメータを生成
-//         $str .= $key.'='.$val.'&';
-//       }
-//     }
-//     $str = mb_substr($str, 0, -1, "UTF-8");
-//     return $str;
-//   }
-// }
+
+
+function appendGetParam($arr_del_key = array()){
+  debug('消したいキー：'.print_r($arr_del_key, true));
+  if(!empty($_GET)){
+    $str = '?';
+    foreach($_GET as $key => $val){
+      if(!in_array($key,$arr_del_key,true)){ //取り除きたいパラメータじゃない場合にurlにくっつけるパラメータを生成
+        $str .= $key.'='.$val.'&';
+      }
+    }
+    $str = mb_substr($str, 0, -1, "UTF-8");
+    debug('渡すGET値：'.print_r($str,true));
+    return $str;
+  }
+}

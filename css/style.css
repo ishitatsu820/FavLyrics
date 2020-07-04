@@ -164,7 +164,8 @@ input {
   background-color: #626262;
   padding: 20px;
   text-align: center;
-  color: #ff5722; }
+  color: #ff5722;
+  margin-top: 50px; }
 
 .c-item {
   width: 45%;

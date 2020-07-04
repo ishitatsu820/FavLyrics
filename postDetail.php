@@ -108,7 +108,9 @@ debug('処理終わり <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
           <form action="" method="post" class="float_right c-form">
             <input type="submit" name="submit" value="<?php echo (!$fav_flg) ? '編集する': 'お気に入り登録'; ?>" class="">
           </form>
-
+          <div>
+            <a href="<?php echo ($prev_page === 'index') ? 'index' : 'mypage' ?>.php<?php echo appendGetParam(array('p_id','u_id','prev')); ?>">&lt; 一覧に戻る</a>
+          </div>
           <div class="p-comment overflow_hidden">
             <!-- <form action="" method="post" class="">
               <label class="p-comment-label">
