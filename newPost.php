@@ -129,22 +129,22 @@ debug('処理終わり <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
           <form action="" method="POST" class="c-form">
             <label class="c-form-label <?php if(!empty($err_msg['post_title'])) echo 'err'; ?>">
               タイトル<span class="msg-area"><?php if(!empty($err_msg['post_title'])) echo $err_msg['post_title'] ; ?></span>
-            <input type="text" name="post_title" value="<?php if(!empty($_POST['post_title'])){echo $_POST['post_title'];}else{echo $dbFormData['title'];} ?>" class="c-form-item">
+            <input type="text" name="post_title" value="<?php if(!empty($_POST['post_title'])){echo $_POST['post_title'];}elseif(!empty($dbFormData['tytle'])){echo $dbFormData['title'];} ?>" class="c-form-item">
             </label>
 
             <label class="c-form-label <?php if(!empty($err_msg['fav_lyrics'])) echo 'err'; ?>">
             <span class="msg-area"><?php if(!empty($err_msg['fav_lyrics'])) echo $err_msg['fav_lyrics'] ; ?></span>
-              <textarea name="fav_lyrics" id="" cols="10" rows="15" class="c-form-item" placeholder="お気に入りのフレーズは？"><?php if(!empty($_POST['fav_lyrics'])){echo $_POST['fav_lyrics'];}else{echo $dbFormData['lyrics'];} ?></textarea>
+              <textarea name="fav_lyrics" id="" cols="10" rows="15" class="c-form-item" placeholder="お気に入りのフレーズは？"><?php if(!empty($_POST['fav_lyrics'])){echo $_POST['fav_lyrics'];}elseif(!empty($dbFormData['lyrics'])){echo $dbFormData['lyrics'];} ?></textarea>
             </label>
 
             <label class="c-form-label <?php if(!empty($err_msg['music_title'])) echo 'err'; ?>">
               曲名<span class="msg-area"><?php if(!empty($err_msg['music_title'])) echo $err_msg['music_title'] ; ?></span>
-              <input type="text" name="music_title" value="<?php if(!empty($_POST['music_title'])){echo $_POST['music_title'];}else{echo $dbFormData['music_title'];} ?>" class="c-form-item">
+              <input type="text" name="music_title" value="<?php if(!empty($_POST['music_title'])){echo $_POST['music_title'];}elseif(!empty($dbFormData['music_title'])){echo $dbFormData['music_title'];} ?>" class="c-form-item">
             </label>
 
             <label class="c-form-label <?php if(!empty($err_msg['artist'])) echo 'err'; ?>">
               アーティスト名<span class="msg-area"><?php if(!empty($err_msg['artist'])) echo $err_msg['artist'] ; ?></span>
-              <input type="text" name="artist" value="<?php if(!empty($_POST['artist'])){echo $_POST['artist'];}else{echo $dbFormData['artist'];} ?>" class="c-form-item">
+              <input type="text" name="artist" value="<?php if(!empty($_POST['artist'])){echo $_POST['artist'];}elseif(!empty($dbFormData['artist'])){echo $dbFormData['artist'];} ?>" class="c-form-item">
             </label>
             
             <input type="submit" value="<?php echo (!$edit_flg) ? '投稿する' : '編集する'; ?>" class="">

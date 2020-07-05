@@ -79,7 +79,6 @@ debug('処理終わり <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
     require('header.php'); 
   ?>
 
-
   <!-- メインコンテンツ -->
   <section class="container">
       <div class="section-title"><h2>パスワード変更</h2></div>

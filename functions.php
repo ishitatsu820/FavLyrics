@@ -633,14 +633,15 @@ function getFormData($str, $flg = false){
     }
   }
 }
-// //sessionを１回だけ取得できる
-// function getSessionFlash($key){
-//   if(!empty($_SESSION[$key])){
-//     $data = $_SESSION[$key];
-//     $_SESSION[$key] = '';
-//     return $data;
-//   }
-// 
+//sessionを１回だけ取得できる
+function getSessionFlash($key){
+  if(!empty($_SESSION[$key])){
+    $data = $_SESSION[$key];
+    $_SESSION[$key] = '';
+    return $data;
+  }
+}
+
 //認証キー生成
 function makeRandKey($length = 8) {
     static $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJLKMNOPQRSTUVWXYZ0123456789';

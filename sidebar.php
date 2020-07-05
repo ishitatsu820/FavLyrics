@@ -6,7 +6,7 @@
         <a href="profEdit.php">プロフィール編集</a>
       </div>
       <div class="sidebar-item">
-        <a href="">退会</a>
+        <a href="withdrawal.php">退会</a>
       </div>
     </div>
   </div>
