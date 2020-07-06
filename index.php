@@ -82,7 +82,7 @@ debug('処理終わり <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
       ?>
       
     </div>
-    <?php pagination($currentPageNum_top, $dbPostData['total_page']); ?>
+    <?php topPagination($currentPageNum_top, $dbPostData['total_page']); ?>
   </section>
 
   
