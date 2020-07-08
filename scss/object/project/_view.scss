@@ -4,7 +4,7 @@
 .p-view {
   display: flex;
   flex-direction: column;
-
+  
   &-title {
     font-size: $font-size_xl;
     display: inline-block;
@@ -22,10 +22,14 @@
     display: inline-block;
     font-size: $font-size_l;
     align-self: flex-end;
-    margin-bottom: $space_3l;
+    margin-bottom: $space_4l;
+    text-align: right;
   }
   .artist {
     font-style: italic;
     display: block;
+  }
+  .next-link {
+    align-self: flex-end;
   }
 }

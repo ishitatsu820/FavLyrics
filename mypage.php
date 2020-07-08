@@ -36,7 +36,6 @@ $currentMinNum_fav = (($currentPageNum_fav-1)*$listSpan);
 // DBから投稿データを取得
 $dbMyfavoritePost = getMyFav($currentMinNum_fav, $listSpan, $_SESSION['user_id']);
 debug('現在のお気に入りページ：'.$currentPageNum_fav);
-debug('お気に入り情報：'.print_r($dbMyfavoritePost,true));
 
 
 

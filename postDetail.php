@@ -26,44 +26,11 @@ if(empty($viewData)){
 //ただし、ログインしていない場合はログイン
 debug('u_id：'.$_GET['u_id']);
 if($_SESSION['user_id'] === $_GET['u_id']){
-  $fav_flg = false;
+  $edit_flg = true;
 }else{
-  $fav_flg = true;
+  $edit_flg = false;
 }
 
-
-if(!empty($_POST['submit'])){
-  debug('POST送信があります。');
-  require('auth.php');
-  if($fav_flg){
-    //お気に入り登録
-    try {
-      $dbh = dbConnect();
-      $sql = 'INSERT INTO favorite (post_id, user_id, create_date) VALUES (:p_id, :u_id, :create_date) ';
-      $data = array(':p_id' => $p_id, ':u_id' => $_SESSION['user_id'], ':create_date' => date('Y:m:d H:i:s'));
-  
-      $stmt = queryPost($dbh, $sql, $data);
-  
-      if($stmt){
-        debug('お気に入り登録完了しました。');
-        $_SESSION['msg_success'] = SUC05;
-        header("Location:mypage.php");
-      }
-  
-    } catch (Exception $e) {
-      error_log('エラー発生：'.$e->getMessage());
-      $err_msg = MSG07;
-    }
-
-  }else{
-    debug('編集画面に移動します。');
-    header("Location:newPost.php?p_id=".$p_id);
-  }
-
-
-}else{
-  debug('ポスト送信されていません。');
-}
 
 
 
@@ -103,25 +70,17 @@ debug('処理終わり <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
               ?>
             </div>
             <div class="p-view-music_property"><?php echo sanitize($viewData['music_title']); ?><span class="artist">   By   <?php echo sanitize($viewData['artist']); ?></span></div>
+            <a href="newPost.php?p_id=<?php if($edit_flg) echo $p_id; ?>" class="next-link <?php if(!$edit_flg) echo 'display-none' ; ?>" ><?php echo '編集する'; ?></a>
+            <a href="<?php echo ($prev_page === 'index') ? 'index' : 'mypage' ?>.php<?php echo appendGetParam(array('p_id','u_id','prev')); ?>">&lt; 一覧に戻る</a>
 
           </div>
-          <form action="" method="post" class="float_right c-form">
-            <input type="submit" name="submit" value="<?php echo (!$fav_flg) ? '編集する': 'お気に入り登録'; ?>" class="">
-          </form>
-          <div>
-            <a href="<?php echo ($prev_page === 'index') ? 'index' : 'mypage' ?>.php<?php echo appendGetParam(array('p_id','u_id','prev')); ?>">&lt; 一覧に戻る</a>
-          </div>
-          <div class="p-comment overflow_hidden">
-            <!-- <form action="" method="post" class="">
-              <label class="p-comment-label">
+
+          <div class="p-comment">
+            <form action="" method="post" class="p-comment-form">
                 コメント
-                <div class="msg-area">
-                
-                </div>
                 <input type="text" name="comment" value="">
-                <input type="submit" value="送信" class="">
-                </label>
-            </form> -->
+                <input type="submit" value="送信">
+            </form>
             <div class="p-comment-list">
               <ul>
                 <li><span class="comment-user">あああ</span>てててててててええええええええええええええええええええええええええ</li>

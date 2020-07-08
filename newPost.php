@@ -129,7 +129,7 @@ debug('処理終わり <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
           <form action="" method="POST" class="c-form">
             <label class="c-form-label <?php if(!empty($err_msg['post_title'])) echo 'err'; ?>">
               タイトル<span class="msg-area"><?php if(!empty($err_msg['post_title'])) echo $err_msg['post_title'] ; ?></span>
-            <input type="text" name="post_title" value="<?php if(!empty($_POST['post_title'])){echo $_POST['post_title'];}elseif(!empty($dbFormData['tytle'])){echo $dbFormData['title'];} ?>" class="c-form-item">
+            <input type="text" name="post_title" value="<?php if(!empty($_POST['post_title'])){echo $_POST['post_title'];}elseif(!empty($dbFormData['title'])){echo $dbFormData['title'];} ?>" class="c-form-item">
             </label>
 
             <label class="c-form-label <?php if(!empty($err_msg['fav_lyrics'])) echo 'err'; ?>">
