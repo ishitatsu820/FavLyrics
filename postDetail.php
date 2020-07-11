@@ -38,7 +38,7 @@ debug('取得コメントの中身：'.$commentData);
 
 if(!empty($_POST)){
   debug('POST送信があります。');
-
+  require('auth.php');
   $comment = $_POST['comment'];
  
   try {
