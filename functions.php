@@ -438,117 +438,30 @@ function getMyPost($currentMinNum_post = 1, $span = 10, $u_id){
 }
 
 
-// function getMsgsAndBord($id){
-//   debug('msg情報を取得します。');
-//   debug('掲示板ID：'.$id);
-//   //例外処理
-//   try {
-//     // DBへ接続
-//     $dbh = dbConnect();
-//     // SQL文作成
-//     $sql = 'SELECT m.id AS m_id, product_id, bord_id, send_date, to_user, from_user, sale_user, buy_user, msg, b.create_date FROM message AS m RIGHT JOIN bord AS b ON b.id = m.bord_id WHERE b.id = :id AND m.delete_flg = 0 ORDER BY send_date ASC';
-//     $data = array(':id' => $id);
-//     // クエリ実行
-//     $stmt = queryPost($dbh, $sql, $data);
+function getComment($p_id){
+  debug('コメント情報を取得します。');
+  debug('投稿ID：'.$p_id);
+  //例外処理
+  try {
+    $dbh = dbConnect();
+    $sql = 'SELECT u.username AS username, c.comment AS comment FROM users AS u RIGHT JOIN comment AS c ON u.id = c.user_id WHERE c.post_id = :p_id AND u.delete_flg = 0 AND c.delete_flg = 0 ORDER BY c.create_date DESC';
+    $data = array(':p_id' => $p_id);
+    // クエリ実行
+    $stmt = queryPost($dbh, $sql, $data);
 
-//     if($stmt){
-//       // クエリ結果の全データを返却
-//       return $stmt->fetchAll();
-//     }else{
-//       return false;
-//     }
+    if($stmt){
+      // クエリ結果の全データを返却
+      return $stmt->fetchAll();
+    }else{
+      return false;
+    }
 
-//   } catch (Exception $e) {
-//     error_log('エラー発生:' . $e->getMessage());
-//   }
-// }
-// function getMyMsgsAndBord($u_id){
-//   debug('自分のmsg情報を取得します。');
-//   //例外処理
-//   try {
-//     // DBへ接続
-//     $dbh = dbConnect();
-    
-//     // まず、掲示板レコード取得
-//     // SQL文作成
-//     $sql = 'SELECT * FROM bord AS b WHERE b.sale_user = :id OR b.buy_user = :id AND b.delete_flg = 0';
-//     $data = array(':id' => $u_id);
-//     // クエリ実行
-//     $stmt = queryPost($dbh, $sql, $data);
-//     $rst = $stmt->fetchAll();
-//     if(!empty($rst)){
-//       foreach($rst as $key => $val){
-//         // SQL文作成
-//         $sql = 'SELECT * FROM message WHERE bord_id = :id AND delete_flg = 0 ORDER BY send_date DESC';
-//         $data = array(':id' => $val['id']);
-//         // クエリ実行
-//         $stmt = queryPost($dbh, $sql, $data);
-//         $rst[$key]['msg'] = $stmt->fetchAll();
-//       }
-//     }
-    
-//     if($stmt){
-//       // クエリ結果の全データを返却
-//       return $rst;
-//     }else{
-//       return false;
-//     }
-
-//   } catch (Exception $e) {
-//     error_log('エラー発生:' . $e->getMessage());
-//   }
-// }
-// function getCategory(){
-//   debug('カテゴリー情報を取得します。');
-//   //例外処理
-//   try {
-//     // DBへ接続
-//     $dbh = dbConnect();
-//     // SQL文作成
-//     $sql = 'SELECT * FROM category';
-//     $data = array();
-//     // クエリ実行
-//     $stmt = queryPost($dbh, $sql, $data);
-
-//     if($stmt){
-//       // クエリ結果の全データを返却
-//       return $stmt->fetchAll();
-//     }else{
-//       return false;
-//     }
-
-//   } catch (Exception $e) {
-//     error_log('エラー発生:' . $e->getMessage());
-//   }
-// }
+  } catch (Exception $e) {
+    error_log('エラー発生:' . $e->getMessage());
+  }
+}
 
 
-// function isLike($u_id, $p_id){
-//   debug('お気に入り情報があるか確認します。');
-//   debug('ユーザーID：'.$u_id);
-//   debug('商品ID：'.$p_id);
-//   //例外処理
-//   try {
-//     // DBへ接続
-//     $dbh = dbConnect();
-//     // SQL文作成
-//     $sql = 'SELECT * FROM `like` WHERE product_id = :p_id AND user_id = :u_id';
-//     $data = array(':u_id' => $u_id, ':p_id' => $p_id);
-//     // クエリ実行
-//     $stmt = queryPost($dbh, $sql, $data);
-
-//     if($stmt->rowCount()){
-//       debug('お気に入りです');
-//       return true;
-//     }else{
-//       debug('特に気に入ってません');
-//       return false;
-//     }
-
-//   } catch (Exception $e) {
-//     error_log('エラー発生:' . $e->getMessage());
-//   }
-// }
 function getMyFav($currentMinNum_fav = 1, $span = 10, $u_id){
   debug('自分のお気に入り情報を取得します。');
   debug('ユーザーID：'.$u_id);
@@ -607,7 +520,6 @@ function sendMail($from, $to, $subject, $comment){
 // //================================
 // // その他
 // //================================
-//lyrics改行処理
 
 // サニタイズ
 function sanitize($str){
