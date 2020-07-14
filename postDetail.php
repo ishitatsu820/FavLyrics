@@ -33,7 +33,7 @@ if($_SESSION['user_id'] === $_GET['u_id']){
 
 //コメントの取得
 $commentData = getComment($p_id);
-debug('取得コメントの中身：'.$commentData);
+debug('取得コメントの中身：'.print_r($commentData,true));
 
 
 if(!empty($_POST)){
@@ -83,7 +83,8 @@ debug('処理終わり <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
         
         <div class="section-contents">
           <div class="p-view">
-            <div class="p-view-title"><h3><?php echo sanitize($viewData['title']); ?></h3></div><span class="p-view-username"><a href=""><?php echo sanitize($viewData['username']); ?></a></span>
+            <div class="p-view-title"><?php echo sanitize($viewData['title']); ?><span class="fav"><i class="far fa-heart pink-heart js-click-fav <?php if(isLike($_SESSION['user_id'], $viewData['id'])){ echo 'fas'; } ?>" area-hidden="true" data-postid=<?php echo sanitize($viewData['id']); ?>></i></span></div>
+            <div class="p-view-username"><a href=""><?php echo sanitize($viewData['username']); ?></a></div>
             <div class="p-view-lyrics">
               <?php
                 if(!empty($viewData['lyrics'])){
@@ -109,7 +110,7 @@ debug('処理終わり <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
             <div class="p-comment-list">
               <ul>
                 <?php
-                  foreach ($commentData as $key => $val):
+                  foreach ($commentData['data'] as $key => $val):
                 ?>
                 <li><span class="comment-user"><?php echo sanitize($val['username']); ?> </span><?php echo sanitize($val['comment']); ?></li>
                 <?php

@@ -376,7 +376,7 @@ function getPostList($currentMinNum = 1, $span = 10){
 
 //一つのPOSTを取得する
 function getPostOne($p_id){
-  debug('情報を取得します。');
+  debug('投稿情報を取得します。');
   debug('投稿ID：'.$p_id);
   //例外処理
   try {
@@ -451,7 +451,8 @@ function getComment($p_id){
 
     if($stmt){
       // クエリ結果の全データを返却
-      return $stmt->fetchAll();
+      $rst['data'] = $stmt->fetchAll();
+      return $rst;
     }else{
       return false;
     }
@@ -575,6 +576,33 @@ function makeRandKey($length = 8) {
         $str .= $chars[mt_rand(0, 61)];
     }
     return $str;
+}
+
+function isLike($u_id, $p_id){
+  debug('お気に入り情報があるか確認します。');
+  debug('ユーザーID：'.$u_id);
+  debug('商品ID：'.$p_id);
+  //例外処理
+  try {
+    // DBへ接続
+    $dbh = dbConnect();
+    // SQL文作成
+    $sql = 'SELECT * FROM favorite WHERE post_id = :p_id AND user_id = :u_id';
+    $data = array(':u_id' => $u_id, ':p_id' => $p_id);
+    // クエリ実行
+    $stmt = queryPost($dbh, $sql, $data);
+
+    if($stmt->rowCount()){
+      debug('お気に入りです');
+      return true;
+    }else{
+      debug('特に気に入ってません');
+      return false;
+    }
+
+  } catch (Exception $e) {
+    error_log('エラー発生:' . $e->getMessage());
+  }
 }
 // // 画像処理
 // function uploadImg($file, $key){

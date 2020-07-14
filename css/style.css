@@ -335,8 +335,12 @@ input {
   flex-direction: column; }
   .p-view-title {
     font-size: 24px;
-    display: inline-block;
-    font-weight: bold; }
+    font-weight: bold;
+    display: inline; }
+    .p-view-title .fav {
+      float: right; }
+      .p-view-title .fav .pink-heart {
+        color: pink; }
   .p-view-username {
     font-size: 18px;
     align-self: flex-end; }

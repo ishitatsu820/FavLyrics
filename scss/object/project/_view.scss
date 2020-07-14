@@ -7,12 +7,20 @@
   
   &-title {
     font-size: $font-size_xl;
-    display: inline-block;
     font-weight: bold;
+    display: inline;
+    .fav {
+      float: right;
+      .pink-heart {
+        color: pink;
+      }
+    }
   }
+
   &-username {
     font-size: $font-size_l;
     align-self: flex-end;
+    
   }
   &-lyrics {
     margin-top: $space_xl;
