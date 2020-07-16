@@ -72,7 +72,7 @@ define('MSG17', '半角数字のみご利用いただけます');
 define('SUC01', 'パスワードを変更しました');
 define('SUC02', 'プロフィールを変更しました');
 define('SUC03', 'メールを送信しました');
-define('SUC04', '登録しました');
+define('SUC04', '投稿しました');
 define('SUC05', 'お気に入りに登録しました！');
 define('ERR01', 'ログインしてください。');
 
@@ -295,7 +295,7 @@ function getPost($u_id, $p_id){
     // DBへ接続
     $dbh = dbConnect();
     // SQL文作成
-    $sql = 'SELECT * FROM product WHERE user_id = :u_id AND id = :p_id AND delete_flg = 0';
+    $sql = 'SELECT title, lyrics, artist, music_title, fav, user_id FROM post WHERE user_id = :u_id AND id = :p_id AND delete_flg = 0';
     $data = array(':u_id' => $u_id, ':p_id' => $p_id);
     // クエリ実行
     $stmt = queryPost($dbh, $sql, $data);
@@ -313,9 +313,9 @@ function getPost($u_id, $p_id){
 }
 
 
-//投稿リストを取得する
+//TOPページのリストを取得する
 function getPostList($currentMinNum = 1, $span = 10){
-  debug('投稿情報を取得します。');
+  debug('投稿情報一覧を取得します。');
   //例外処理
   try {
     // DBへ接続
@@ -376,7 +376,7 @@ function getPostList($currentMinNum = 1, $span = 10){
 
 //一つのPOSTを取得する
 function getPostOne($p_id){
-  debug('情報を取得します。');
+  debug('投稿情報を取得します。');
   debug('投稿ID：'.$p_id);
   //例外処理
   try {
@@ -401,107 +401,58 @@ function getPostOne($p_id){
 }
 
 
-function getMyProducts($u_id){
+function getMyPost($currentMinNum_post = 1, $span = 10, $u_id){
   debug('自分の投稿情報を取得します。');
   debug('ユーザーID：'.$u_id);
   //例外処理
   try {
-    // DBへ接続
+    //自分の投稿数をカウント
     $dbh = dbConnect();
-    // SQL文作成
-    $sql = 'SELECT * FROM product WHERE user_id = :u_id AND delete_flg = 0';
+    $sql = 'SELECT id FROM post WHERE user_id = :u_id AND delete_flg = 0';
     $data = array(':u_id' => $u_id);
+    $stmt = queryPost($dbh, $sql, $data);
+    $rst['my_total'] = $stmt->rowCount(); //総レコード数
+    $rst['my_total_page'] = ceil($rst['my_total']/$span); //総ページ数
+    if(!$stmt){
+      return false;
+    }
+
+    //自分の投稿のリスト表示
+    $sql = 'SELECT id AS p_id, title, lyrics, artist, music_title, user_id AS u_id FROM post WHERE user_id = :u_id AND delete_flg = 0 ORDER BY create_date DESC';
+    $sql .= ' LIMIT '.$span.' OFFSET '.$currentMinNum_post;
+    $data = array(':u_id' => $u_id);
+    debug('SQL：'.$sql);
     // クエリ実行
     $stmt = queryPost($dbh, $sql, $data);
 
     if($stmt){
-      // クエリ結果のデータを全レコード返却
-      return $stmt->fetchAll();
+      // クエリ結果のデータを全レコードを格納
+      $rst['data'] = $stmt->fetchAll();
+      return $rst;
     }else{
       return false;
     }
-
   } catch (Exception $e) {
     error_log('エラー発生:' . $e->getMessage());
   }
 }
 
 
-// function getMsgsAndBord($id){
-//   debug('msg情報を取得します。');
-//   debug('掲示板ID：'.$id);
-//   //例外処理
-//   try {
-//     // DBへ接続
-//     $dbh = dbConnect();
-//     // SQL文作成
-//     $sql = 'SELECT m.id AS m_id, product_id, bord_id, send_date, to_user, from_user, sale_user, buy_user, msg, b.create_date FROM message AS m RIGHT JOIN bord AS b ON b.id = m.bord_id WHERE b.id = :id AND m.delete_flg = 0 ORDER BY send_date ASC';
-//     $data = array(':id' => $id);
-//     // クエリ実行
-//     $stmt = queryPost($dbh, $sql, $data);
-
-//     if($stmt){
-//       // クエリ結果の全データを返却
-//       return $stmt->fetchAll();
-//     }else{
-//       return false;
-//     }
-
-//   } catch (Exception $e) {
-//     error_log('エラー発生:' . $e->getMessage());
-//   }
-// }
-// function getMyMsgsAndBord($u_id){
-//   debug('自分のmsg情報を取得します。');
-//   //例外処理
-//   try {
-//     // DBへ接続
-//     $dbh = dbConnect();
-    
-//     // まず、掲示板レコード取得
-//     // SQL文作成
-//     $sql = 'SELECT * FROM bord AS b WHERE b.sale_user = :id OR b.buy_user = :id AND b.delete_flg = 0';
-//     $data = array(':id' => $u_id);
-//     // クエリ実行
-//     $stmt = queryPost($dbh, $sql, $data);
-//     $rst = $stmt->fetchAll();
-//     if(!empty($rst)){
-//       foreach($rst as $key => $val){
-//         // SQL文作成
-//         $sql = 'SELECT * FROM message WHERE bord_id = :id AND delete_flg = 0 ORDER BY send_date DESC';
-//         $data = array(':id' => $val['id']);
-//         // クエリ実行
-//         $stmt = queryPost($dbh, $sql, $data);
-//         $rst[$key]['msg'] = $stmt->fetchAll();
-//       }
-//     }
-    
-//     if($stmt){
-//       // クエリ結果の全データを返却
-//       return $rst;
-//     }else{
-//       return false;
-//     }
-
-//   } catch (Exception $e) {
-//     error_log('エラー発生:' . $e->getMessage());
-//   }
-// }
-function getCategory(){
-  debug('カテゴリー情報を取得します。');
+function getComment($p_id){
+  debug('コメント情報を取得します。');
+  debug('投稿ID：'.$p_id);
   //例外処理
   try {
-    // DBへ接続
     $dbh = dbConnect();
-    // SQL文作成
-    $sql = 'SELECT * FROM category';
-    $data = array();
+    $sql = 'SELECT u.username AS username, c.comment AS comment FROM users AS u RIGHT JOIN comment AS c ON u.id = c.user_id WHERE c.post_id = :p_id AND u.delete_flg = 0 AND c.delete_flg = 0 ORDER BY c.create_date DESC';
+    $data = array(':p_id' => $p_id);
     // クエリ実行
     $stmt = queryPost($dbh, $sql, $data);
 
     if($stmt){
       // クエリ結果の全データを返却
-      return $stmt->fetchAll();
+      $rst['data'] = $stmt->fetchAll();
+      return $rst;
     }else{
       return false;
     }
@@ -510,48 +461,34 @@ function getCategory(){
     error_log('エラー発生:' . $e->getMessage());
   }
 }
-// function isLike($u_id, $p_id){
-//   debug('お気に入り情報があるか確認します。');
-//   debug('ユーザーID：'.$u_id);
-//   debug('商品ID：'.$p_id);
-//   //例外処理
-//   try {
-//     // DBへ接続
-//     $dbh = dbConnect();
-//     // SQL文作成
-//     $sql = 'SELECT * FROM `like` WHERE product_id = :p_id AND user_id = :u_id';
-//     $data = array(':u_id' => $u_id, ':p_id' => $p_id);
-//     // クエリ実行
-//     $stmt = queryPost($dbh, $sql, $data);
 
-//     if($stmt->rowCount()){
-//       debug('お気に入りです');
-//       return true;
-//     }else{
-//       debug('特に気に入ってません');
-//       return false;
-//     }
 
-//   } catch (Exception $e) {
-//     error_log('エラー発生:' . $e->getMessage());
-//   }
-// }
-function getMyLike($u_id){
+function getMyFav($currentMinNum_fav = 1, $span = 10, $u_id){
   debug('自分のお気に入り情報を取得します。');
   debug('ユーザーID：'.$u_id);
   //例外処理
   try {
-    // DBへ接続
+    //件数用SQL
     $dbh = dbConnect();
-    // SQL文作成
-    $sql = 'SELECT * FROM `like` AS l LEFT JOIN product AS p ON l.product_id = p.id WHERE l.user_id = :u_id';
+    $sql = 'SELECT post_id FROM favorite WHERE user_id = :u_id AND delete_flg = 0';
     $data = array(':u_id' => $u_id);
-    // クエリ実行
+    $stmt = queryPost($dbh, $sql, $data);
+    $rst['fav_total'] = $stmt->rowCount(); //総レコード数
+    $rst['fav_total_page'] = ceil($rst['fav_total']/$span); //総ページ数
+    if(!$stmt){
+      return false;
+    }
+    //ページング用SQL
+    $sql = 'SELECT f.post_id,  p.id AS p_id, p.title, p.lyrics, p.artist, p.music_title, p.user_id AS u_id FROM favorite AS f LEFT JOIN post AS p ON f.post_id = p.id WHERE f.user_id = :u_id AND f.delete_flg = 0 AND p.delete_flg = 0';
+    $sql .= ' LIMIT '.$span.' OFFSET '.$currentMinNum_fav;
+    debug('SQL：'.$sql);
+    $data = array(':u_id' => $u_id);
     $stmt = queryPost($dbh, $sql, $data);
 
     if($stmt){
-      // クエリ結果の全データを返却
-      return $stmt->fetchAll();
+      // クエリ結果のデータを全レコードを格納
+      $rst['data'] = $stmt->fetchAll();
+      return $rst;
     }else{
       return false;
     }
@@ -584,7 +521,6 @@ function sendMail($from, $to, $subject, $comment){
 // //================================
 // // その他
 // //================================
-//lyrics改行処理
 
 // サニタイズ
 function sanitize($str){
@@ -623,14 +559,15 @@ function getFormData($str, $flg = false){
     }
   }
 }
-// //sessionを１回だけ取得できる
-// function getSessionFlash($key){
-//   if(!empty($_SESSION[$key])){
-//     $data = $_SESSION[$key];
-//     $_SESSION[$key] = '';
-//     return $data;
-//   }
-// 
+//sessionを１回だけ取得できる
+function getSessionFlash($key){
+  if(!empty($_SESSION[$key])){
+    $data = $_SESSION[$key];
+    $_SESSION[$key] = '';
+    return $data;
+  }
+}
+
 //認証キー生成
 function makeRandKey($length = 8) {
     static $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJLKMNOPQRSTUVWXYZ0123456789';
@@ -639,6 +576,33 @@ function makeRandKey($length = 8) {
         $str .= $chars[mt_rand(0, 61)];
     }
     return $str;
+}
+
+function isLike($u_id, $p_id){
+  debug('お気に入り情報があるか確認します。');
+  debug('ユーザーID：'.$u_id);
+  debug('商品ID：'.$p_id);
+  //例外処理
+  try {
+    // DBへ接続
+    $dbh = dbConnect();
+    // SQL文作成
+    $sql = 'SELECT * FROM favorite WHERE post_id = :p_id AND user_id = :u_id';
+    $data = array(':u_id' => $u_id, ':p_id' => $p_id);
+    // クエリ実行
+    $stmt = queryPost($dbh, $sql, $data);
+
+    if($stmt->rowCount()){
+      debug('お気に入りです');
+      return true;
+    }else{
+      debug('特に気に入ってません');
+      return false;
+    }
+
+  } catch (Exception $e) {
+    error_log('エラー発生:' . $e->getMessage());
+  }
 }
 // // 画像処理
 // function uploadImg($file, $key){
@@ -698,7 +662,7 @@ function makeRandKey($length = 8) {
 // $totalPageNum : 総ページ数
 // $link : 検索用GETパラメータリンク
 // $pageColNum : ページネーション表示数
-function pagination( $currentPageNum, $totalPageNum, $link = '', $pageColNum = 5){
+function topPagination( $currentPageNum, $totalPageNum, $link = '', $pageColNum = 5){
   // 現在のページが、総ページ数と同じ　かつ　総ページ数が表示項目数以上なら、左にリンク４個出す
   if( $currentPageNum == $totalPageNum && $totalPageNum > $pageColNum){
     $minPageNum = $currentPageNum - 4;
@@ -741,7 +705,92 @@ function pagination( $currentPageNum, $totalPageNum, $link = '', $pageColNum = 5
     echo '</ul>';
   echo '</div>';
 }
-
+function postPagination( $currentPageNum, $totalPageNum, $link = '', $pageColNum = 5){
+  // 現在のページが、総ページ数と同じ　かつ　総ページ数が表示項目数以上なら、左にリンク４個出す
+  if( $currentPageNum == $totalPageNum && $totalPageNum > $pageColNum){
+    $minPageNum = $currentPageNum - 4;
+    $maxPageNum = $currentPageNum;
+  // 現在のページが、総ページ数の１ページ前なら、左にリンク３個、右に１個出す
+  }elseif( $currentPageNum == ($totalPageNum-1) && $totalPageNum > $pageColNum){
+    $minPageNum = $currentPageNum - 3;
+    $maxPageNum = $currentPageNum + 1;
+  // 現ページが2の場合は左にリンク１個、右にリンク３個だす。
+  }elseif( $currentPageNum == 2 && $totalPageNum > $pageColNum){
+    $minPageNum = $currentPageNum - 1;
+    $maxPageNum = $currentPageNum + 3;
+  // 現ページが1の場合は左に何も出さない。右に５個出す。
+  }elseif( $currentPageNum == 1 && $totalPageNum > $pageColNum){
+    $minPageNum = $currentPageNum;
+    $maxPageNum = 5;
+  // 総ページ数が表示項目数より少ない場合は、総ページ数をループのMax、ループのMinを１に設定
+  }elseif($totalPageNum < $pageColNum){
+    $minPageNum = 1;
+    $maxPageNum = $totalPageNum;
+  // それ以外は左に２個出す。
+  }else{
+    $minPageNum = $currentPageNum - 2;
+    $maxPageNum = $currentPageNum + 2;
+  }
+  
+  echo '<div class="pagination">';
+    echo '<ul class="pagination-list">';
+      if($currentPageNum != 1){
+        echo '<li class="list-item"><a href="?post=1'.$link.'">&lt;</a></li>';
+      }
+      for($i = $minPageNum; $i <= $maxPageNum; $i++){
+        echo '<li class="list-item ';
+        if($currentPageNum == $i ){ echo 'active'; }
+        echo '"><a href="?post='.$i.$link.'">'.$i.'</a></li>';
+      }
+      if($currentPageNum != $maxPageNum && $maxPageNum > 1){
+        echo '<li class="list-item"><a href="?post='.$maxPageNum.$link.'">&gt;</a></li>';
+      }
+    echo '</ul>';
+  echo '</div>';
+}
+function favPagination( $currentPageNum, $totalPageNum, $link = '', $pageColNum = 5){
+  // 現在のページが、総ページ数と同じ　かつ　総ページ数が表示項目数以上なら、左にリンク４個出す
+  if( $currentPageNum == $totalPageNum && $totalPageNum > $pageColNum){
+    $minPageNum = $currentPageNum - 4;
+    $maxPageNum = $currentPageNum;
+  // 現在のページが、総ページ数の１ページ前なら、左にリンク３個、右に１個出す
+  }elseif( $currentPageNum == ($totalPageNum-1) && $totalPageNum > $pageColNum){
+    $minPageNum = $currentPageNum - 3;
+    $maxPageNum = $currentPageNum + 1;
+  // 現ページが2の場合は左にリンク１個、右にリンク３個だす。
+  }elseif( $currentPageNum == 2 && $totalPageNum > $pageColNum){
+    $minPageNum = $currentPageNum - 1;
+    $maxPageNum = $currentPageNum + 3;
+  // 現ページが1の場合は左に何も出さない。右に５個出す。
+  }elseif( $currentPageNum == 1 && $totalPageNum > $pageColNum){
+    $minPageNum = $currentPageNum;
+    $maxPageNum = 5;
+  // 総ページ数が表示項目数より少ない場合は、総ページ数をループのMax、ループのMinを１に設定
+  }elseif($totalPageNum < $pageColNum){
+    $minPageNum = 1;
+    $maxPageNum = $totalPageNum;
+  // それ以外は左に２個出す。
+  }else{
+    $minPageNum = $currentPageNum - 2;
+    $maxPageNum = $currentPageNum + 2;
+  }
+  
+  echo '<div class="pagination">';
+    echo '<ul class="pagination-list">';
+      if($currentPageNum != 1){
+        echo '<li class="list-item"><a href="?fav=1'.$link.'">&lt;</a></li>';
+      }
+      for($i = $minPageNum; $i <= $maxPageNum; $i++){
+        echo '<li class="list-item ';
+        if($currentPageNum == $i ){ echo 'active'; }
+        echo '"><a href="?fav='.$i.$link.'">'.$i.'</a></li>';
+      }
+      if($currentPageNum != $maxPageNum && $maxPageNum > 1){
+        echo '<li class="list-item"><a href="?fav='.$maxPageNum.$link.'">&gt;</a></li>';
+      }
+    echo '</ul>';
+  echo '</div>';
+}
 // //画像表示用関数
 // function showImg($path){
 //   if(empty($path)){
@@ -752,15 +801,19 @@ function pagination( $currentPageNum, $totalPageNum, $link = '', $pageColNum = 5
 // }
 // //GETパラメータ付与
 // // $del_key : 付与から取り除きたいGETパラメータのキー
-// function appendGetParam($arr_del_key = array()){
-//   if(!empty($_GET)){
-//     $str = '?';
-//     foreach($_GET as $key => $val){
-//       if(!in_array($key,$arr_del_key,true)){ //取り除きたいパラメータじゃない場合にurlにくっつけるパラメータを生成
-//         $str .= $key.'='.$val.'&';
-//       }
-//     }
-//     $str = mb_substr($str, 0, -1, "UTF-8");
-//     return $str;
-//   }
-// }
+
+
+function appendGetParam($arr_del_key = array()){
+  debug('消したいキー：'.print_r($arr_del_key, true));
+  if(!empty($_GET)){
+    $str = '?';
+    foreach($_GET as $key => $val){
+      if(!in_array($key,$arr_del_key,true)){ //取り除きたいパラメータじゃない場合にurlにくっつけるパラメータを生成
+        $str .= $key.'='.$val.'&';
+      }
+    }
+    $str = mb_substr($str, 0, -1, "UTF-8");
+    debug('渡すGET値：'.print_r($str,true));
+    return $str;
+  }
+}

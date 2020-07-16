@@ -4,19 +4,25 @@
 .p-comment {
   width: 100%;
   margin: 0 auto;
-  &-label {
+  
+  &-form {
+    margin-top: $space_4l;
     font-size: $font-size_xl;
+    display: flex;
+    flex-direction: column;
     input[type="text"] {
-      height: 25px;
-      width: 80%;
       margin-right: auto;
+      display: block;
+      height: 30px;
+      width: 100%;
+      font-size: $font-size_l;
     }
     input[type="submit"] {
       width: 50px;
       border: 1px solid $color_baseG;
       border-radius: 3px;
-      
-      
+      align-self: flex-end;
+      margin-top: $space_l;
     }
 
      

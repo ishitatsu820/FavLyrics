@@ -4,15 +4,23 @@
 .p-view {
   display: flex;
   flex-direction: column;
-
+  
   &-title {
     font-size: $font-size_xl;
-    display: inline-block;
     font-weight: bold;
+    display: inline;
+    .fav {
+      float: right;
+      .pink-heart {
+        color: pink;
+      }
+    }
   }
+
   &-username {
     font-size: $font-size_l;
     align-self: flex-end;
+    
   }
   &-lyrics {
     margin-top: $space_xl;
@@ -22,10 +30,14 @@
     display: inline-block;
     font-size: $font-size_l;
     align-self: flex-end;
-    margin-bottom: $space_3l;
+    margin-bottom: $space_4l;
+    text-align: right;
   }
   .artist {
     font-style: italic;
     display: block;
+  }
+  .next-link {
+    align-self: flex-end;
   }
 }

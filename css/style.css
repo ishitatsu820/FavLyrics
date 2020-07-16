@@ -107,6 +107,16 @@ input {
     .header .nav-item a:hover {
       opacity: .5; }
 
+.msg-slide {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 40px;
+  background: rgba(122, 206, 230, 0.6);
+  text-align: center;
+  font-size: 16px;
+  line-height: 40px; }
+
 .search {
   background-color: #25b669;
   width: 15%; }
@@ -164,7 +174,8 @@ input {
   background-color: #626262;
   padding: 20px;
   text-align: center;
-  color: #ff5722; }
+  color: #ff5722;
+  margin-top: 50px; }
 
 .c-item {
   width: 45%;
@@ -296,16 +307,23 @@ input {
 .p-comment {
   width: 100%;
   margin: 0 auto; }
-  .p-comment-label {
-    font-size: 24px; }
-    .p-comment-label input[type="text"] {
-      height: 25px;
-      width: 80%;
-      margin-right: auto; }
-    .p-comment-label input[type="submit"] {
+  .p-comment-form {
+    margin-top: 100px;
+    font-size: 24px;
+    display: flex;
+    flex-direction: column; }
+    .p-comment-form input[type="text"] {
+      margin-right: auto;
+      display: block;
+      height: 30px;
+      width: 100%;
+      font-size: 18px; }
+    .p-comment-form input[type="submit"] {
       width: 50px;
       border: 1px solid #626262;
-      border-radius: 3px; }
+      border-radius: 3px;
+      align-self: flex-end;
+      margin-top: 15px; }
   .p-comment-list {
     margin-top: 20px; }
     .p-comment-list .comment-user {
@@ -317,8 +335,12 @@ input {
   flex-direction: column; }
   .p-view-title {
     font-size: 24px;
-    display: inline-block;
-    font-weight: bold; }
+    font-weight: bold;
+    display: inline; }
+    .p-view-title .fav {
+      float: right; }
+      .p-view-title .fav .pink-heart {
+        color: pink; }
   .p-view-username {
     font-size: 18px;
     align-self: flex-end; }
@@ -329,10 +351,13 @@ input {
     display: inline-block;
     font-size: 18px;
     align-self: flex-end;
-    margin-bottom: 50px; }
+    margin-bottom: 100px;
+    text-align: right; }
   .p-view .artist {
     font-style: italic;
     display: block; }
+  .p-view .next-link {
+    align-self: flex-end; }
 
 .text-center {
   text-align: center; }
@@ -342,3 +367,6 @@ input {
 
 .float_right {
   float: right; }
+
+.display-none {
+  display: none; }

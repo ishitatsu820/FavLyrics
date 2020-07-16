@@ -82,6 +82,7 @@ debug('処理終わり <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
       ?>
       
     </div>
+    <?php topPagination($currentPageNum_top, $dbPostData['total_page']); ?>
   </section>
 
   
