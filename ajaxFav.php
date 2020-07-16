@@ -37,6 +37,8 @@ if(isset($_POST['postId']) && isset($_SESSION['user_id']) && isLogin()){
     }
     if($stmt){
       debug('かんりょう！！');
+      $_SESSION['msg_success'] = SUC05;
+
     }else{
       debug('しっぱい！！');
     }

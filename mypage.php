@@ -51,7 +51,9 @@ debug('処理終わり <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
   <?php
   require('header.php');
   ?>
-
+  <p id="js-show-msg" style="display:none;" class="msg-slide">
+    <?php echo getSessionFlash('msg_success'); ?>
+  </p>
   <!-- メイン -->
   <div class="main">
 

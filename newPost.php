@@ -90,8 +90,10 @@ if(!empty($_POST)){
 
       if($stmt){
         $_SESSION['msg_success'] = SUC04;
+        debug('セッションメッセージの中身：'.$_SESSION['msg_success']);
         debug('マイページへ遷移します。');
         header("Location:mypage.php");
+        return;
       }
 
     } catch (Exception $e) {
